@@ -67,7 +67,16 @@ export default function App() {
       <header className="sticky top-0 z-50 border-b border-white/10 bg-[#070707]/75 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
           <a href="#top" className="flex items-center gap-3">
-            <img src="/logo-blanc-ecriture.png" alt="Ruben PELAGE" className="h-14 w-auto" />
+            <img src="/logo-blanc-ecriture.png" alt="Ruben PELAGE" className="h-12 w-auto" />
+          
+            <div className="flex flex-col leading-tight">
+              <span className="text-lg font-semibold tracking-wide text-white">
+                Ruben PELAGE
+              </span>
+              <span className="text-xs text-white/50">
+                Création & protection de patrimoine
+              </span>
+            </div>
           </a>
 
           <nav className="hidden items-center gap-8 text-sm text-white/65 md:flex">
@@ -84,7 +93,6 @@ export default function App() {
 
       <section id="top" className="mx-auto grid max-w-7xl items-center gap-12 px-5 pb-20 pt-14 md:grid-cols-[1.08fr_0.92fr] md:px-8 md:pb-28 md:pt-24">
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.75 }}>
-          <Label>Personal branding financier premium</Label>
           <h1 className="max-w-5xl text-5xl font-semibold leading-[0.93] tracking-[-0.065em] md:text-7xl lg:text-8xl">
             Ton argent doit avoir une stratégie.
             <span className="block bg-gradient-to-r from-[#D4AF37] via-[#f4dc91] to-white bg-clip-text text-transparent">
