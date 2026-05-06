@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 
 const calendly = "https://calendly.com/ruben-pelage/consultation";
-const whatsapp = "https://wa.me/596696298921";
+const whatsapp = "https://wa.me/596696298921?text=Bonjour%20Ruben,%20je%20souhaite%20faire%20un%20audit%20financier.%20Voici%20ma%20situation%20:";
 const instagram = "https://instagram.com/__rub3n__";
 const linkedin = "https://www.linkedin.com/in/rubenpelage";
 
