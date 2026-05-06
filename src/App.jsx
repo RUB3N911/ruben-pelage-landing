@@ -2,8 +2,7 @@ import React from "react"; import { motion } from "framer-motion"; import { Arro
 
 const Button = ({ children, variant = "primary" }) => { const base = "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#080808]"; const variants = { primary: "bg-[#D4AF37] text-[#101010] hover:bg-[#f0d36f] hover:shadow-[0_0_40px_rgba(212,175,55,0.25)] focus:ring-[#D4AF37]", secondary: "border border-white/15 bg-white/5 text-white hover:bg-white/10 focus:ring-white/30", };
 
-return <button className={${base} ${variants[variant]}}>{children}</button>; };
-
+return <button className={`${base} ${variants[variant]}`}>{children}</button>; };
 const SectionLabel = ({ children }) => (
 
   <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/25 bg-[#D4AF37]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-[#D4AF37]">
