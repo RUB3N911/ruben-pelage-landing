@@ -18,10 +18,8 @@ import {
 } from "lucide-react";
 
 const calendly = "https://calendly.com/ruben-pelage/consultation";
-
 const whatsapp =
   "https://wa.me/596696298921?text=Bonjour%20Ruben,%20je%20souhaite%20faire%20un%20audit%20financier.%20Voici%20ma%20situation%20:";
-
 const instagram = "https://instagram.com/__rub3n__";
 const linkedin = "https://www.linkedin.com/in/rubenpelage";
 const email = "mailto:ruben.pelage@gmail.com";
@@ -43,24 +41,6 @@ function LinkButton({ icon: Icon, title, subtitle, href }) {
       </div>
       <MoreVertical className="text-black/40" />
     </a>
-  );
-}
-
-function MethodCard({ icon: Icon, title, label, text }) {
-  return (
-    <div className="rounded-3xl border border-white/10 bg-white/[0.05] p-6 text-left">
-      <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full border border-[#C99A2E]/40 text-[#C99A2E]">
-        <Icon size={28} />
-      </div>
-
-      <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#C99A2E]">
-        {label}
-      </p>
-
-      <h3 className="mt-3 text-2xl font-bold text-white">{title}</h3>
-
-      <p className="mt-4 leading-7 text-white/60">{text}</p>
-    </div>
   );
 }
 
@@ -97,6 +77,105 @@ function Footer({ setPage }) {
         </button>
       </div>
     </footer>
+  );
+}
+
+function MethodSection() {
+  return (
+    <section className="mt-14 rounded-[2.5rem] bg-black px-6 py-10 text-white shadow-[0_25px_80px_rgba(0,0,0,0.25)]">
+      <div className="text-center">
+        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#C99A2E]">
+          Méthode Table / Frigo / Congélo
+        </p>
+
+        <h2 className="mx-auto mt-5 max-w-md text-4xl font-bold leading-tight">
+          Une mission précise pour chaque euro.
+        </h2>
+
+        <p className="mx-auto mt-5 max-w-md text-base leading-7 text-white/60">
+          Transformer le flou financier en structure claire : vivre, sécuriser
+          et construire durablement.
+        </p>
+      </div>
+
+      <div className="mt-10 space-y-5">
+        <div className="rounded-3xl border border-white/10 bg-white/[0.05] p-6">
+          <div className="flex items-start gap-5">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-[#C99A2E]/30 text-[#C99A2E]">
+              <Wallet size={28} />
+            </div>
+
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#C99A2E]">
+                Présent
+              </p>
+
+              <h3 className="mt-2 text-2xl font-bold">La Table</h3>
+
+              <p className="mt-3 leading-7 text-white/60">
+                Ce qui finance le quotidien : charges, dépenses, arbitrages et
+                stabilité.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="rounded-3xl border border-white/10 bg-white/[0.05] p-6">
+          <div className="flex items-start gap-5">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-[#008080]/40 text-[#6FE7E7]">
+              <ShieldCheck size={28} />
+            </div>
+
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#6FE7E7]">
+                Protection
+              </p>
+
+              <h3 className="mt-2 text-2xl font-bold">Le Frigo</h3>
+
+              <p className="mt-3 leading-7 text-white/60">
+                Ce qui sécurise l’avenir proche : épargne disponible, imprévus
+                et sérénité.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="rounded-3xl border border-white/10 bg-white/[0.05] p-6">
+          <div className="flex items-start gap-5">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-[#C99A2E]/30 text-[#C99A2E]">
+              <Snowflake size={28} />
+            </div>
+
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#C99A2E]">
+                Patrimoine
+              </p>
+
+              <h3 className="mt-2 text-2xl font-bold">Le Congélo</h3>
+
+              <p className="mt-3 leading-7 text-white/60">
+                Ce qui construit le long terme : investissement, retraite,
+                transmission et patrimoine.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-10 rounded-3xl border border-[#C99A2E]/20 bg-[#C99A2E]/10 p-6 text-center">
+        <TrendingUp className="mx-auto text-[#C99A2E]" size={34} />
+
+        <p className="mt-4 text-xl font-semibold leading-snug">
+          Un argent sans stratégie crée du stress.
+        </p>
+
+        <p className="mx-auto mt-3 max-w-sm text-sm leading-7 text-white/60">
+          Un argent structuré crée de la liberté, de la vision et des
+          possibilités.
+        </p>
+      </div>
+    </section>
   );
 }
 
@@ -153,6 +232,8 @@ function HomePage({ setPage }) {
           </button>
         </div>
 
+        <MethodSection />
+
         <Footer setPage={setPage} />
       </div>
     </main>
@@ -180,63 +261,9 @@ function MorePage({ setPage }) {
         <h1 className="mt-7 text-center text-4xl font-bold">Ruben PELAGE</h1>
 
         <p className="mx-auto mt-5 max-w-lg text-center text-xl font-medium leading-snug">
-          J’aide les actifs, familles et entrepreneurs à transformer le flou
-          financier en décisions stratégiques.
+          Mes liens utiles pour prendre rendez-vous ou avancer sur ta stratégie
+          financière.
         </p>
-
-        <p className="mx-auto mt-4 max-w-lg text-center text-base leading-7 text-black/55">
-          Pour cela, je m’appuie sur une méthode simple mais puissante :
-          Table / Frigo / Congélo.
-        </p>
-
-        <section className="mt-10 rounded-[2rem] bg-black px-5 py-8 text-white">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.25em] text-[#C99A2E]">
-            Méthode Table / Frigo / Congélo
-          </p>
-
-          <h2 className="mx-auto mt-4 max-w-sm text-center text-3xl font-bold leading-tight">
-            Une mission précise pour chaque euro.
-          </h2>
-
-          <p className="mx-auto mt-4 max-w-md text-center text-sm leading-7 text-white/55">
-            Maîtriser le quotidien, sécuriser l’avenir proche et construire un
-            patrimoine durable.
-          </p>
-
-          <div className="mt-8 space-y-4">
-            <MethodCard
-              icon={Wallet}
-              label="Présent"
-              title="La Table"
-              text="Ce qui finance ta vie quotidienne : charges, dépenses, budget et arbitrages."
-            />
-
-            <MethodCard
-              icon={ShieldCheck}
-              label="Protection"
-              title="Le Frigo"
-              text="Ce qui sécurise tes projets courts, tes imprévus et ta tranquillité financière."
-            />
-
-            <MethodCard
-              icon={Snowflake}
-              label="Patrimoine"
-              title="Le Congélo"
-              text="Ce qui construit ton avenir : investissement, retraite, transmission et long terme."
-            />
-          </div>
-
-          <div className="mt-8 rounded-3xl border border-[#C99A2E]/30 bg-[#C99A2E]/10 p-5 text-center">
-            <TrendingUp className="mx-auto text-[#C99A2E]" size={34} />
-            <p className="mt-4 text-lg font-semibold">
-              Un argent sans stratégie crée du stress.
-            </p>
-            <p className="mt-2 text-sm leading-6 text-white/60">
-              Un argent structuré crée de la liberté, de la vision et des
-              possibilités.
-            </p>
-          </div>
-        </section>
 
         <div className="mt-10 space-y-5">
           <LinkButton
