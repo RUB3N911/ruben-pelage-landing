@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   MessageCircle,
   Instagram,
@@ -25,34 +25,28 @@ const instagram = "https://instagram.com/__rub3n__";
 const linkedin = "https://www.linkedin.com/in/rubenpelage";
 const email = "mailto:ruben.pelage@gmail.com";
 
-function openCalendly() {
-  if (window.Calendly && window.Calendly.initPopupWidget) {
-    window.Calendly.initPopupWidget({ url: calendly });
-  } else {
-    window.open(calendly, "_blank");
-  }
-}
-
-function CalendlyButton({ children, className = "" }) {
-  return (
-    <button type="button" onClick={openCalendly} className={className}>
-      {children}
-    </button>
-  );
-}
-
 function Footer({ setPage }) {
   return (
     <footer className="mt-20 border-t border-white/10 pt-8 text-center text-xs text-white/45">
       <div className="flex justify-center gap-6 text-white/70">
-        <a href={instagram} target="_blank" rel="noreferrer"><Instagram size={24} /></a>
-        <a href={linkedin} target="_blank" rel="noreferrer"><Linkedin size={24} /></a>
-        <a href={whatsapp} target="_blank" rel="noreferrer"><MessageCircle size={24} /></a>
-        <a href={email}><Mail size={24} /></a>
+        <a href={instagram} target="_blank" rel="noreferrer">
+          <Instagram size={24} />
+        </a>
+        <a href={linkedin} target="_blank" rel="noreferrer">
+          <Linkedin size={24} />
+        </a>
+        <a href={whatsapp} target="_blank" rel="noreferrer">
+          <MessageCircle size={24} />
+        </a>
+        <a href={email}>
+          <Mail size={24} />
+        </a>
       </div>
 
       <p className="mt-6 font-medium text-white/65">© 2026 Ruben PELAGE</p>
-      <p className="mt-1">Création & protection de patrimoine · N° ORIAS : 22005046</p>
+      <p className="mt-1">
+        Création & protection de patrimoine · N° ORIAS : 22005046
+      </p>
       <p className="mt-1">Martinique · France</p>
 
       <div className="mt-5 flex justify-center gap-4">
@@ -79,7 +73,11 @@ function MethodCard({ icon: Icon, label, title, text, color = "gold" }) {
         <Icon size={28} />
       </div>
 
-      <p className={`text-xs font-semibold uppercase tracking-[0.25em] ${color === "teal" ? "text-[#65d6d6]" : "text-[#D4AF37]"}`}>
+      <p
+        className={`text-xs font-semibold uppercase tracking-[0.25em] ${
+          color === "teal" ? "text-[#65d6d6]" : "text-[#D4AF37]"
+        }`}
+      >
         {label}
       </p>
 
@@ -148,9 +146,14 @@ function MethodSection() {
   );
 }
 
-function LinkButton({ icon: Icon, title, subtitle, href, onClick }) {
-  const content = (
-    <>
+function LinkButton({ icon: Icon, title, subtitle, href }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="flex w-full items-center justify-between rounded-3xl border border-white/10 bg-white/[0.05] px-5 py-5 text-left text-white shadow-[0_12px_40px_rgba(0,0,0,0.35)] transition hover:-translate-y-1 hover:border-[#D4AF37]/40"
+    >
       <div className="flex items-center gap-5">
         <Icon size={34} strokeWidth={2.3} className="text-[#D4AF37]" />
         <div>
@@ -159,23 +162,6 @@ function LinkButton({ icon: Icon, title, subtitle, href, onClick }) {
         </div>
       </div>
       <MoreVertical className="text-white/35" />
-    </>
-  );
-
-  const className =
-    "flex w-full items-center justify-between rounded-3xl border border-white/10 bg-white/[0.05] px-5 py-5 text-left text-white shadow-[0_12px_40px_rgba(0,0,0,0.35)] transition hover:-translate-y-1 hover:border-[#D4AF37]/40";
-
-  if (onClick) {
-    return (
-      <button type="button" onClick={onClick} className={className}>
-        {content}
-      </button>
-    );
-  }
-
-  return (
-    <a href={href} target="_blank" rel="noreferrer" className={className}>
-      {content}
     </a>
   );
 }
@@ -186,16 +172,27 @@ function HomePage({ setPage }) {
       <header className="sticky top-0 z-50 border-b border-white/10 bg-[#060606]/85 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-4">
-            <img src="/logo-blanc-ecriture.png" alt="Ruben PELAGE" className="h-12 w-auto" />
+            <img
+              src="/logo-blanc-ecriture.png"
+              alt="Ruben PELAGE"
+              className="h-12 w-auto"
+            />
             <div className="hidden sm:block">
               <p className="font-bold">Ruben PELAGE</p>
-              <p className="text-xs text-white/45">Création & protection de patrimoine</p>
+              <p className="text-xs text-white/45">
+                Création & protection de patrimoine
+              </p>
             </div>
           </div>
 
-          <CalendlyButton className="hidden rounded-full bg-[#D4AF37] px-6 py-3 text-sm font-semibold text-black md:inline-flex">
+          <a
+            href={calendly}
+            target="_blank"
+            rel="noreferrer"
+            className="hidden rounded-full bg-[#D4AF37] px-6 py-3 text-sm font-semibold text-black md:inline-flex"
+          >
             Réserver mon audit
-          </CalendlyButton>
+          </a>
         </div>
       </header>
 
@@ -243,9 +240,15 @@ function HomePage({ setPage }) {
           </div>
 
           <div className="mt-9 flex justify-center gap-7 text-white md:justify-start">
-            <a href={instagram} target="_blank" rel="noreferrer"><Instagram size={34} /></a>
-            <a href={linkedin} target="_blank" rel="noreferrer"><Linkedin size={34} /></a>
-            <a href={whatsapp} target="_blank" rel="noreferrer"><MessageCircle size={34} /></a>
+            <a href={instagram} target="_blank" rel="noreferrer">
+              <Instagram size={34} />
+            </a>
+            <a href={linkedin} target="_blank" rel="noreferrer">
+              <Linkedin size={34} />
+            </a>
+            <a href={whatsapp} target="_blank" rel="noreferrer">
+              <MessageCircle size={34} />
+            </a>
           </div>
         </div>
 
@@ -265,9 +268,26 @@ function HomePage({ setPage }) {
 
       <section className="mx-auto max-w-7xl px-6 py-24">
         <div className="grid gap-6 md:grid-cols-4">
-          <LinkButton icon={Phone} title="Appel découverte 30 min" subtitle="Calendly · Gratuit" onClick={openCalendly} />
-          <LinkButton icon={Euro} title="Aide déclaration d’impôt" href={whatsapp} />
-          <LinkButton icon={Rocket} title="Audit indépendant" subtitle="Gratuit" href={whatsapp} />
+          <LinkButton
+            icon={Phone}
+            title="Appel découverte 30 min"
+            subtitle="Calendly · Gratuit"
+            href={calendly}
+          />
+
+          <LinkButton
+            icon={Euro}
+            title="Aide déclaration d’impôt"
+            href={whatsapp}
+          />
+
+          <LinkButton
+            icon={Rocket}
+            title="Audit indépendant"
+            subtitle="Gratuit"
+            href={whatsapp}
+          />
+
           <LinkButton icon={Globe} title="Site web" href="#" />
         </div>
 
@@ -281,22 +301,46 @@ function MorePage({ setPage }) {
   return (
     <main className="min-h-screen bg-[#060606] px-6 py-8 text-white">
       <div className="mx-auto max-w-xl">
-        <button onClick={() => setPage("home")} className="mb-6 flex items-center gap-2 text-white/60">
+        <button
+          onClick={() => setPage("home")}
+          className="mb-6 flex items-center gap-2 text-white/60"
+        >
           <ArrowLeft size={20} /> Retour
         </button>
 
-        <img src="/portrait-ruben.png" alt="Ruben PELAGE" className="mx-auto h-36 w-36 rounded-full border border-white/10 object-cover" />
+        <img
+          src="/portrait-ruben.png"
+          alt="Ruben PELAGE"
+          className="mx-auto h-36 w-36 rounded-full border border-white/10 object-cover"
+        />
 
         <h1 className="mt-7 text-center text-4xl font-bold">Ruben PELAGE</h1>
 
         <p className="mx-auto mt-5 max-w-lg text-center text-xl font-medium leading-snug text-white/80">
-          Mes liens utiles pour prendre rendez-vous ou avancer sur ta stratégie financière.
+          Mes liens utiles pour prendre rendez-vous ou avancer sur ta stratégie
+          financière.
         </p>
 
         <div className="mt-10 space-y-5">
-          <LinkButton icon={Phone} title="Appel découverte 30 min - GRATUIT" subtitle="Calendly · Ruben PELAGE" onClick={openCalendly} />
-          <LinkButton icon={Euro} title="Besoin d’aide pour votre déclaration d’impôt ?" href={whatsapp} />
-          <LinkButton icon={Rocket} title="Audit financier pour indépendant - GRATUIT" href={whatsapp} />
+          <LinkButton
+            icon={Phone}
+            title="Appel découverte 30 min - GRATUIT"
+            subtitle="Calendly · Ruben PELAGE"
+            href={calendly}
+          />
+
+          <LinkButton
+            icon={Euro}
+            title="Besoin d’aide pour votre déclaration d’impôt ?"
+            href={whatsapp}
+          />
+
+          <LinkButton
+            icon={Rocket}
+            title="Audit financier pour indépendant - GRATUIT"
+            href={whatsapp}
+          />
+
           <LinkButton icon={Globe} title="Site web" href="#" />
         </div>
 
@@ -310,7 +354,10 @@ function LegalPage({ setPage }) {
   return (
     <main className="min-h-screen bg-[#060606] px-6 py-8 text-white">
       <div className="mx-auto max-w-3xl">
-        <button onClick={() => setPage("home")} className="mb-8 flex items-center gap-2 text-white/60">
+        <button
+          onClick={() => setPage("home")}
+          className="mb-8 flex items-center gap-2 text-white/60"
+        >
           <ArrowLeft size={20} /> Retour
         </button>
 
@@ -322,11 +369,16 @@ function LegalPage({ setPage }) {
             <section>
               <h2 className="text-xl font-semibold text-white">Éditeur du site</h2>
               <p className="mt-3">
-                Ruben PELAGE<br />
-                Conseiller en création et protection de patrimoine<br />
-                N° ORIAS : 22005046<br />
-                Site internet : ruben-pelage-landing.vercel.app<br />
-                Email : ruben.pelage@gmail.com<br />
+                Ruben PELAGE
+                <br />
+                Conseiller en création et protection de patrimoine
+                <br />
+                N° ORIAS : 22005046
+                <br />
+                Site internet : ruben-pelage-landing.vercel.app
+                <br />
+                Email : ruben.pelage@gmail.com
+                <br />
                 Téléphone : +596 696 29 89 21
               </p>
             </section>
@@ -343,22 +395,29 @@ function LegalPage({ setPage }) {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white">Immatriculation ORIAS</h2>
+              <h2 className="text-xl font-semibold text-white">
+                Immatriculation ORIAS
+              </h2>
               <p className="mt-3">Immatriculé à l’ORIAS sous le numéro : 22005046.</p>
             </section>
 
             <section>
               <h2 className="text-xl font-semibold text-white">Hébergement</h2>
               <p className="mt-3">
-                Site hébergé par Vercel Inc.<br />
-                440 N Barranca Ave #4133<br />
-                Covina, CA 91723<br />
+                Site hébergé par Vercel Inc.
+                <br />
+                440 N Barranca Ave #4133
+                <br />
+                Covina, CA 91723
+                <br />
                 États-Unis
               </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white">Propriété intellectuelle</h2>
+              <h2 className="text-xl font-semibold text-white">
+                Propriété intellectuelle
+              </h2>
               <p className="mt-3">
                 L’ensemble des contenus présents sur ce site, notamment les textes,
                 images, logo, identité visuelle, éléments graphiques et structure,
@@ -399,7 +458,8 @@ function LegalPage({ setPage }) {
             <section>
               <h2 className="text-xl font-semibold text-white">Contact</h2>
               <p className="mt-3">
-                Email : ruben.pelage@gmail.com<br />
+                Email : ruben.pelage@gmail.com
+                <br />
                 Téléphone : +596 696 29 89 21
               </p>
             </section>
@@ -416,29 +476,42 @@ function PrivacyPage({ setPage }) {
   return (
     <main className="min-h-screen bg-[#060606] px-6 py-8 text-white">
       <div className="mx-auto max-w-3xl">
-        <button onClick={() => setPage("home")} className="mb-8 flex items-center gap-2 text-white/60">
+        <button
+          onClick={() => setPage("home")}
+          className="mb-8 flex items-center gap-2 text-white/60"
+        >
           <ArrowLeft size={20} /> Retour
         </button>
 
         <div className="rounded-3xl border border-white/10 bg-white/[0.05] p-6 shadow-xl md:p-10">
           <ShieldCheck className="mb-5 text-[#D4AF37]" size={34} />
-          <h1 className="text-3xl font-bold md:text-4xl">Politique de confidentialité</h1>
+          <h1 className="text-3xl font-bold md:text-4xl">
+            Politique de confidentialité
+          </h1>
 
           <div className="mt-8 space-y-8 text-sm leading-7 text-white/65">
             <section>
               <h2 className="text-xl font-semibold text-white">1. Introduction</h2>
               <p className="mt-3">
-                Cette politique de confidentialité informe les utilisateurs sur la manière dont leurs données personnelles peuvent être collectées, utilisées et protégées.
+                Cette politique de confidentialité informe les utilisateurs sur la
+                manière dont leurs données personnelles peuvent être collectées,
+                utilisées et protégées.
               </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white">2. Responsable du traitement</h2>
+              <h2 className="text-xl font-semibold text-white">
+                2. Responsable du traitement
+              </h2>
               <p className="mt-3">
-                Ruben PELAGE<br />
-                Conseiller en création et protection de patrimoine<br />
-                Email : ruben.pelage@gmail.com<br />
-                Téléphone : +596 696 29 89 21<br />
+                Ruben PELAGE
+                <br />
+                Conseiller en création et protection de patrimoine
+                <br />
+                Email : ruben.pelage@gmail.com
+                <br />
+                Téléphone : +596 696 29 89 21
+                <br />
                 N° ORIAS : 22005046
               </p>
             </section>
@@ -446,71 +519,104 @@ function PrivacyPage({ setPage }) {
             <section>
               <h2 className="text-xl font-semibold text-white">3. Données collectées</h2>
               <p className="mt-3">
-                Les données pouvant être collectées incluent : nom, prénom, adresse e-mail, numéro de téléphone, informations communiquées volontairement, données transmises via WhatsApp, Calendly ou formulaire de contact, ainsi que certaines données techniques comme l’adresse IP, le type de navigateur, les données de navigation et les cookies techniques.
+                Les données pouvant être collectées incluent : nom, prénom,
+                adresse e-mail, numéro de téléphone, informations communiquées
+                volontairement, données transmises via WhatsApp, Calendly ou formulaire
+                de contact, ainsi que certaines données techniques comme l’adresse IP,
+                le type de navigateur, les données de navigation et les cookies techniques.
               </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white">4. Finalité de la collecte</h2>
+              <h2 className="text-xl font-semibold text-white">
+                4. Finalité de la collecte
+              </h2>
               <p className="mt-3">
-                Les données collectées sont utilisées pour répondre aux demandes de contact, organiser des rendez-vous, fournir des informations ou accompagnements personnalisés, assurer le suivi des échanges et améliorer l’expérience utilisateur du site.
+                Les données collectées sont utilisées pour répondre aux demandes de
+                contact, organiser des rendez-vous, fournir des informations ou
+                accompagnements personnalisés, assurer le suivi des échanges et améliorer
+                l’expérience utilisateur du site.
               </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white">5. Base légale du traitement</h2>
+              <h2 className="text-xl font-semibold text-white">
+                5. Base légale du traitement
+              </h2>
               <p className="mt-3">
-                Les traitements réalisés reposent sur le consentement de l’utilisateur, l’exécution de mesures précontractuelles ou l’intérêt légitime lié à l’activité professionnelle présentée sur le site.
+                Les traitements réalisés reposent sur le consentement de l’utilisateur,
+                l’exécution de mesures précontractuelles ou l’intérêt légitime lié à
+                l’activité professionnelle présentée sur le site.
               </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white">6. Conservation des données</h2>
+              <h2 className="text-xl font-semibold text-white">
+                6. Conservation des données
+              </h2>
               <p className="mt-3">
-                Les données personnelles sont conservées uniquement pendant la durée nécessaire aux finalités pour lesquelles elles ont été collectées, sauf obligation légale contraire.
+                Les données personnelles sont conservées uniquement pendant la durée
+                nécessaire aux finalités pour lesquelles elles ont été collectées, sauf
+                obligation légale contraire.
               </p>
             </section>
 
             <section>
               <h2 className="text-xl font-semibold text-white">7. Sécurité des données</h2>
               <p className="mt-3">
-                Des mesures raisonnables de sécurité sont mises en œuvre afin de protéger les données contre l’accès non autorisé, la perte, la divulgation ou toute utilisation abusive.
+                Des mesures raisonnables de sécurité sont mises en œuvre afin de protéger
+                les données contre l’accès non autorisé, la perte, la divulgation ou toute
+                utilisation abusive.
               </p>
             </section>
 
             <section>
               <h2 className="text-xl font-semibold text-white">8. Services tiers</h2>
               <p className="mt-3">
-                Le site peut utiliser des services externes tels que Calendly, WhatsApp, Instagram, LinkedIn et Vercel. Ces services disposent de leurs propres politiques de confidentialité.
+                Le site peut utiliser des services externes tels que Calendly, WhatsApp,
+                Instagram, LinkedIn et Vercel. Ces services disposent de leurs propres
+                politiques de confidentialité.
               </p>
             </section>
 
             <section>
               <h2 className="text-xl font-semibold text-white">9. Cookies</h2>
               <p className="mt-3">
-                Le site peut utiliser des cookies techniques et analytiques afin d’assurer son bon fonctionnement, de mesurer l’audience et d’améliorer l’expérience utilisateur. L’utilisateur peut désactiver les cookies via les paramètres de son navigateur.
+                Le site peut utiliser des cookies techniques et analytiques afin d’assurer
+                son bon fonctionnement, de mesurer l’audience et d’améliorer l’expérience
+                utilisateur. L’utilisateur peut désactiver les cookies via les paramètres de
+                son navigateur.
               </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white">10. Droits des utilisateurs</h2>
+              <h2 className="text-xl font-semibold text-white">
+                10. Droits des utilisateurs
+              </h2>
               <p className="mt-3">
-                Conformément au RGPD, vous disposez d’un droit d’accès, de rectification, de suppression, d’opposition, de limitation du traitement et de portabilité des données. Toute demande peut être adressée à : ruben.pelage@gmail.com.
+                Conformément au RGPD, vous disposez d’un droit d’accès, de rectification,
+                de suppression, d’opposition, de limitation du traitement et de portabilité
+                des données. Toute demande peut être adressée à : ruben.pelage@gmail.com.
               </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white">11. Modification de la politique</h2>
+              <h2 className="text-xl font-semibold text-white">
+                11. Modification de la politique
+              </h2>
               <p className="mt-3">
-                Cette politique de confidentialité peut être modifiée à tout moment afin de rester conforme aux évolutions légales ou techniques.
+                Cette politique de confidentialité peut être modifiée à tout moment afin de
+                rester conforme aux évolutions légales ou techniques.
               </p>
             </section>
 
             <section>
               <h2 className="text-xl font-semibold text-white">12. Contact</h2>
               <p className="mt-3">
-                Ruben PELAGE<br />
-                ruben.pelage@gmail.com<br />
+                Ruben PELAGE
+                <br />
+                ruben.pelage@gmail.com
+                <br />
                 +596 696 29 89 21
               </p>
             </section>
@@ -525,19 +631,6 @@ function PrivacyPage({ setPage }) {
 
 export default function App() {
   const [page, setPage] = useState("home");
-
-  useEffect(() => {
-    const existingScript = document.querySelector(
-      'script[src="https://assets.calendly.com/assets/external/widget.js"]'
-    );
-
-    if (!existingScript) {
-      const script = document.createElement("script");
-      script.src = "https://assets.calendly.com/assets/external/widget.js";
-      script.async = true;
-      document.body.appendChild(script);
-    }
-  }, []);
 
   if (page === "more") return <MorePage setPage={setPage} />;
   if (page === "legal") return <LegalPage setPage={setPage} />;
