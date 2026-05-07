@@ -327,21 +327,27 @@ function AuditPage() {
             </ul>
           </div>
 
-          <div className="rounded-3xl border border-[#D4AF37]/20 bg-[#D4AF37]/10 p-8">
-            <h3 className="text-2xl font-bold">Réserver un audit</h3>
+          <div className="group relative overflow-hidden rounded-3xl border border-[#D4AF37]/20 bg-[#D4AF37]/10 p-8 transition duration-500 hover:-translate-y-2 hover:border-[#D4AF37]/60 hover:bg-[#D4AF37]/15 hover:shadow-[0_25px_90px_rgba(212,175,55,0.18)]">
+            <div className="absolute -right-20 -top-20 h-44 w-44 rounded-full bg-[#D4AF37]/20 blur-3xl transition duration-700 group-hover:bg-[#D4AF37]/35" />
 
-            <p className="mt-4 leading-8 text-white/70">
-              Échange offert en visio ou par téléphone.
-            </p>
+            <div className="absolute inset-y-0 left-0 w-1/2 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition duration-1000 group-hover:translate-x-[220%]" />
 
-            <a
-              href={calendly}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-8 inline-flex w-full items-center justify-center rounded-full bg-[#D4AF37] px-8 py-4 font-semibold text-black"
-            >
-              Réserver maintenant
-            </a>
+            <div className="relative">
+              <h3 className="text-2xl font-bold">Réserver un audit</h3>
+
+              <p className="mt-4 leading-8 text-white/70">
+                Échange offert en visio ou par téléphone.
+              </p>
+
+              <a
+                href={calendly}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-8 inline-flex w-full items-center justify-center rounded-full bg-[#D4AF37] px-8 py-4 font-semibold text-black transition duration-300 group-hover:scale-[1.03] group-hover:bg-[#e7c14a]"
+              >
+                Réserver maintenant
+              </a>
+            </div>
           </div>
         </div>
       </section>
