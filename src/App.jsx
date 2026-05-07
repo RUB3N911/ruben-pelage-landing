@@ -1,109 +1,173 @@
-import React from "react";
+import React, { useState } from "react";
 import {
-  ArrowRight,
   CalendarDays,
   MessageCircle,
-  ShieldCheck,
-  PiggyBank,
-  Snowflake,
-  TrendingUp,
   Instagram,
   Linkedin,
+  Phone,
+  Euro,
+  Rocket,
+  Globe,
+  MoreVertical,
+  ArrowLeft,
 } from "lucide-react";
 
 const calendly = "https://calendly.com/ruben-pelage/consultation";
-const whatsapp = "https://wa.me/596696298921?text=Bonjour%20Ruben,%20je%20souhaite%20faire%20un%20audit%20financier.%20Voici%20ma%20situation%20:";
+const whatsapp =
+  "https://wa.me/596696298921?text=Bonjour%20Ruben,%20je%20souhaite%20faire%20un%20audit%20financier.%20Voici%20ma%20situation%20:";
 const instagram = "https://instagram.com/__rub3n__";
 const linkedin = "https://www.linkedin.com/in/rubenpelage";
 
-export default function App() {
+function LinkButton({ icon: Icon, title, subtitle, href }) {
   return (
-    <main className="min-h-screen bg-[#f5f3ef] text-black overflow-hidden">
-      <header className="border-b border-black/10 bg-[#f5f3ef]/90 backdrop-blur-xl sticky top-0 z-50">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
-          <div className="flex items-center gap-4">
-            <img src="/logo-blanc-ecriture.png" alt="Ruben PELAGE" className="h-14" />
-            <div>
-              <p className="font-serif text-2xl">Ruben PELAGE</p>
-              <p className="text-xs uppercase tracking-[0.2em] text-black/50">
-                Création & protection de patrimoine
-              </p>
-            </div>
-          </div>
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="flex items-center justify-between rounded-2xl bg-white px-5 py-5 shadow-[0_12px_30px_rgba(0,0,0,0.08)] transition hover:-translate-y-1"
+    >
+      <div className="flex items-center gap-5">
+        <Icon size={34} strokeWidth={2.4} />
+        <div>
+          <p className="text-lg font-semibold leading-tight">{title}</p>
+          {subtitle && <p className="mt-1 text-sm text-black/45">{subtitle}</p>}
+        </div>
+      </div>
+      <MoreVertical className="text-black/45" />
+    </a>
+  );
+}
 
-          <a
-            href={calendly}
-            target="_blank"
-            rel="noreferrer"
-            className="hidden md:inline-flex border border-black px-5 py-3 text-xs uppercase tracking-[0.2em] hover:bg-black hover:text-white transition"
-          >
-            Réserver un audit
+function Home({ onMore }) {
+  return (
+    <main className="min-h-screen bg-[#f3f3f3] px-6 py-10 text-center text-black">
+      <div className="mx-auto max-w-xl">
+        <img
+          src="/portrait-ruben.png"
+          alt="Ruben PELAGE"
+          className="mx-auto h-40 w-40 rounded-full object-cover"
+        />
+
+        <h1 className="mt-8 text-4xl font-bold tracking-tight">Ruben PELAGE</h1>
+
+        <p className="mx-auto mt-4 max-w-lg text-2xl font-medium leading-snug">
+          Conseiller — J’aide les actifs, familles et entrepreneurs à structurer,
+          protéger et développer leur patrimoine.
+        </p>
+
+        <div className="mt-8 flex justify-center gap-8">
+          <a href={instagram} target="_blank" rel="noreferrer">
+            <Instagram size={42} />
+          </a>
+          <a href={linkedin} target="_blank" rel="noreferrer">
+            <Linkedin size={42} />
+          </a>
+          <a href={whatsapp} target="_blank" rel="noreferrer">
+            <MessageCircle size={42} />
           </a>
         </div>
-      </header>
 
-      <section className="mx-auto grid max-w-7xl items-center gap-10 px-6 py-16 md:grid-cols-2">
-        <div className="relative h-[560px] md:h-[660px]">
-          <div className="absolute inset-0 bg-gradient-to-t from-[#f5f3ef] to-transparent z-10" />
-          <img
-            src="/portrait-ruben.png"
-            alt="Ruben PELAGE"
-            className="absolute bottom-0 left-1/2 h-full -translate-x-1/2 object-contain grayscale"
+        <div className="mt-12 space-y-5">
+          <a
+            href={whatsapp}
+            target="_blank"
+            rel="noreferrer"
+            className="block rounded-2xl bg-black px-6 py-5 text-lg font-semibold text-white shadow-xl"
+          >
+            Contactez-moi
+          </a>
+
+          <button
+            onClick={onMore}
+            className="w-full rounded-2xl border border-black px-6 py-5 text-lg font-semibold"
+          >
+            En savoir plus
+          </button>
+        </div>
+
+        <p className="mt-10 text-sm text-black/40">N° ORIAS : 22005046</p>
+      </div>
+    </main>
+  );
+}
+
+function MorePage({ onBack }) {
+  return (
+    <main className="min-h-screen bg-[#eeeeee] px-6 py-8 text-black">
+      <div className="mx-auto max-w-xl">
+        <button onClick={onBack} className="mb-6 flex items-center gap-2 text-black/60">
+          <ArrowLeft size={20} /> Retour
+        </button>
+
+        <img
+          src="/portrait-ruben.png"
+          alt="Ruben PELAGE"
+          className="mx-auto h-36 w-36 rounded-full object-cover"
+        />
+
+        <h1 className="mt-7 text-center text-4xl font-bold">Ruben PELAGE</h1>
+
+        <p className="mx-auto mt-4 max-w-lg text-center text-2xl font-medium leading-snug">
+          Création & protection de patrimoine.  
+          Méthode Table / Frigo / Congélo.
+        </p>
+
+        <div className="mt-8 flex justify-center gap-8">
+          <a href={instagram} target="_blank" rel="noreferrer">
+            <Instagram size={42} />
+          </a>
+          <a href={linkedin} target="_blank" rel="noreferrer">
+            <Linkedin size={42} />
+          </a>
+          <a href={whatsapp} target="_blank" rel="noreferrer">
+            <MessageCircle size={42} />
+          </a>
+        </div>
+
+        <div className="mt-12 space-y-5">
+          <LinkButton
+            icon={Phone}
+            title="Appel découverte 30 min - GRATUIT"
+            subtitle="Calendly · Ruben PELAGE"
+            href={calendly}
+          />
+
+          <LinkButton
+            icon={Euro}
+            title="Besoin d’aide pour votre déclaration d’impôt ?"
+            href={whatsapp}
+          />
+
+          <LinkButton
+            icon={Rocket}
+            title="Audit financier pour indépendant - GRATUIT"
+            href={whatsapp}
+          />
+
+          <LinkButton
+            icon={Globe}
+            title="Site web"
+            href="https://project-w7cqu.vercel.app"
           />
         </div>
 
-        <div>
-          <div className="inline-flex border border-black px-4 py-2 text-xs uppercase tracking-[0.2em] mb-8">
-            Consultant. Stratège. Entrepreneur.
-          </div>
+        <p className="mt-10 text-center text-xs text-black/40">
+          © 2026 Ruben PELAGE — N° ORIAS : 22005046
+        </p>
+      </div>
+    </main>
+  );
+}
 
-          <h1 className="font-serif text-6xl leading-[0.9] tracking-[-0.05em] md:text-7xl">
-            Stratégie.
-            <br />
-            Patrimoine.
-            <br />
-            <span className="text-[#C99A2E]">Décisions.</span>
-          </h1>
+export default function App() {
+  const [page, setPage] = useState("home");
 
-          <div className="mt-8 border-l-2 border-[#C99A2E] pl-6">
-            <p className="text-xl leading-9 text-black/70">
-              Je t’aide à structurer ton argent, clarifier tes décisions et construire une trajectoire financière solide.
-            </p>
-            <p className="mt-5 text-lg font-medium">
-              Sans complexité. Sans discours inutile.
-            </p>
-          </div>
-
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-            <a
-              href={calendly}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center gap-3 bg-[#C99A2E] px-6 py-4 text-xs font-bold uppercase tracking-[0.2em] text-white hover:bg-[#d9b04c] transition"
-            >
-              <CalendarDays size={16} />
-              Réserver un audit
-            </a>
-
-            <a
-              href={whatsapp}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center gap-3 border border-black px-6 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-black hover:text-white transition"
-            >
-              <MessageCircle size={16} />
-              WhatsApp
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-20">
-        <div className="grid gap-6 md:grid-cols-3">
-          <div className="border border-black/10 bg-white/60 p-8">
-            <ShieldCheck className="mb-6 text-[#C99A2E]" />
-            <h3 className="font-serif text-3xl">Protéger</h3>
-            <p className="mt-4 leading-7 text-black/60">
+  return page === "home" ? (
+    <Home onMore={() => setPage("more")} />
+  ) : (
+    <MorePage onBack={() => setPage("home")} />
+  );
+}            <p className="mt-4 leading-7 text-black/60">
               Sécuriser ton foyer, anticiper les imprévus et éviter les angles morts.
             </p>
           </div>
