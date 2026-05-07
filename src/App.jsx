@@ -9,13 +9,14 @@ import {
   ShieldCheck,
   Snowflake,
   Phone,
+  FileText,
+  ArrowLeft,
 } from "lucide-react";
 
 const whatsapp =
   "https://wa.me/596696298921?text=Bonjour%20Ruben,%20je%20souhaite%20faire%20un%20audit%20financier.";
 
-const calendly =
-  "https://calendly.com/ruben-pelage/consultation";
+const calendly = "https://calendly.com/ruben-pelage/consultation";
 
 const instagram = "https://instagram.com/__rub3n__";
 const linkedin = "https://linkedin.com/in/rubenpelage";
@@ -33,10 +34,7 @@ function Navbar() {
           />
 
           <div>
-            <p className="text-lg font-bold text-white">
-              Ruben PELAGE
-            </p>
-
+            <p className="text-lg font-bold text-white">Ruben PELAGE</p>
             <p className="text-xs text-white/45">
               Création & protection de patrimoine
             </p>
@@ -44,30 +42,10 @@ function Navbar() {
         </a>
 
         <nav className="hidden items-center gap-8 md:flex">
-          <a href="/" className="text-white/60 hover:text-white">
-            Accueil
-          </a>
-
-          <a
-            href="/methode"
-            className="text-white/60 hover:text-white"
-          >
-            Méthode
-          </a>
-
-          <a
-            href="/audit"
-            className="text-white/60 hover:text-white"
-          >
-            Audit
-          </a>
-
-          <a
-            href="/contact"
-            className="text-white/60 hover:text-white"
-          >
-            Contact
-          </a>
+          <a href="/" className="text-white/60 hover:text-white">Accueil</a>
+          <a href="/methode" className="text-white/60 hover:text-white">Méthode</a>
+          <a href="/audit" className="text-white/60 hover:text-white">Audit</a>
+          <a href="/contact" className="text-white/60 hover:text-white">Contact</a>
         </nav>
 
         <a
@@ -87,26 +65,13 @@ function Footer() {
   return (
     <footer className="border-t border-white/10 py-12 text-center text-sm text-white/45">
       <div className="flex justify-center gap-6 text-white">
-        <a href={instagram} target="_blank" rel="noreferrer">
-          <Instagram />
-        </a>
-
-        <a href={linkedin} target="_blank" rel="noreferrer">
-          <Linkedin />
-        </a>
-
-        <a href={whatsapp} target="_blank" rel="noreferrer">
-          <MessageCircle />
-        </a>
-
-        <a href={email}>
-          <Mail />
-        </a>
+        <a href={instagram} target="_blank" rel="noreferrer"><Instagram /></a>
+        <a href={linkedin} target="_blank" rel="noreferrer"><Linkedin /></a>
+        <a href={whatsapp} target="_blank" rel="noreferrer"><MessageCircle /></a>
+        <a href={email}><Mail /></a>
       </div>
 
-      <p className="mt-6">
-        © 2026 Ruben PELAGE · N° ORIAS : 22005046
-      </p>
+      <p className="mt-6">© 2026 Ruben PELAGE · N° ORIAS : 22005046</p>
 
       <div className="mt-4 flex justify-center gap-4">
         <a href="/mentions-legales" className="underline">
@@ -118,6 +83,15 @@ function Footer() {
         </a>
       </div>
     </footer>
+  );
+}
+
+function BackButton() {
+  return (
+    <a href="/" className="mb-8 inline-flex items-center gap-2 text-white/60 hover:text-white">
+      <ArrowLeft size={20} />
+      Retour
+    </a>
   );
 }
 
@@ -134,9 +108,8 @@ function Hero() {
         </h1>
 
         <p className="mt-8 max-w-xl text-xl leading-9 text-white/70">
-          J’aide les actifs, familles et entrepreneurs à
-          transformer le flou financier en décisions
-          stratégiques grâce à une approche claire,
+          J’aide les actifs, familles et entrepreneurs à transformer le flou
+          financier en décisions stratégiques grâce à une approche claire,
           exigeante et pensée pour le long terme.
         </p>
 
@@ -181,13 +154,8 @@ function MethodCard({ icon: Icon, title, text }) {
         <Icon size={30} />
       </div>
 
-      <h3 className="mt-6 text-2xl font-bold text-white">
-        {title}
-      </h3>
-
-      <p className="mt-4 leading-8 text-white/60">
-        {text}
-      </p>
+      <h3 className="mt-6 text-2xl font-bold text-white">{title}</h3>
+      <p className="mt-4 leading-8 text-white/60">{text}</p>
     </div>
   );
 }
@@ -208,9 +176,8 @@ function MethodePage() {
           </h1>
 
           <p className="mt-8 text-xl leading-9 text-white/65">
-            Une méthode pensée pour reprendre le contrôle,
-            sécuriser ton avenir et construire un patrimoine
-            durable.
+            Une méthode pensée pour reprendre le contrôle, sécuriser ton avenir
+            et construire un patrimoine durable.
           </p>
         </div>
 
@@ -255,16 +222,13 @@ function AuditPage() {
         </h1>
 
         <p className="mx-auto mt-8 max-w-3xl text-xl leading-9 text-white/65">
-          Un échange stratégique pour identifier les
-          blocages, clarifier les priorités et définir des
-          axes d’optimisation adaptés à votre situation.
+          Un échange stratégique pour identifier les blocages, clarifier les
+          priorités et définir des axes d’optimisation adaptés à votre situation.
         </p>
 
         <div className="mx-auto mt-16 grid max-w-4xl gap-6 text-left md:grid-cols-2">
           <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-8">
-            <h3 className="text-2xl font-bold">
-              Ce que nous analysons
-            </h3>
+            <h3 className="text-2xl font-bold">Ce que nous analysons</h3>
 
             <ul className="mt-6 space-y-4 text-white/65">
               <li>• Budget et organisation financière</li>
@@ -276,9 +240,7 @@ function AuditPage() {
           </div>
 
           <div className="rounded-3xl border border-[#D4AF37]/20 bg-[#D4AF37]/10 p-8">
-            <h3 className="text-2xl font-bold">
-              Réserver un audit
-            </h3>
+            <h3 className="text-2xl font-bold">Réserver un audit</h3>
 
             <p className="mt-4 leading-8 text-white/70">
               Échange offert en visio ou par téléphone.
@@ -317,8 +279,7 @@ function ContactPage() {
           </h1>
 
           <p className="mt-8 text-xl leading-9 text-white/65">
-            Chaque stratégie commence par une conversation
-            claire.
+            Chaque stratégie commence par une conversation claire.
           </p>
         </div>
 
@@ -330,14 +291,8 @@ function ContactPage() {
             className="rounded-3xl border border-white/10 bg-white/[0.04] p-8"
           >
             <MessageCircle className="text-[#D4AF37]" />
-
-            <h3 className="mt-6 text-2xl font-bold">
-              WhatsApp
-            </h3>
-
-            <p className="mt-3 text-white/60">
-              Échange rapide et direct.
-            </p>
+            <h3 className="mt-6 text-2xl font-bold">WhatsApp</h3>
+            <p className="mt-3 text-white/60">Échange rapide et direct.</p>
           </a>
 
           <a
@@ -345,14 +300,8 @@ function ContactPage() {
             className="rounded-3xl border border-white/10 bg-white/[0.04] p-8"
           >
             <Mail className="text-[#D4AF37]" />
-
-            <h3 className="mt-6 text-2xl font-bold">
-              Email
-            </h3>
-
-            <p className="mt-3 text-white/60">
-              contact@pelageruben.com
-            </p>
+            <h3 className="mt-6 text-2xl font-bold">Email</h3>
+            <p className="mt-3 text-white/60">contact@pelageruben.com</p>
           </a>
 
           <a
@@ -362,11 +311,7 @@ function ContactPage() {
             className="rounded-3xl border border-white/10 bg-white/[0.04] p-8"
           >
             <Phone className="text-[#D4AF37]" />
-
-            <h3 className="mt-6 text-2xl font-bold">
-              Audit offert
-            </h3>
-
+            <h3 className="mt-6 text-2xl font-bold">Audit offert</h3>
             <p className="mt-3 text-white/60">
               Réserver un échange stratégique.
             </p>
@@ -375,6 +320,224 @@ function ContactPage() {
       </section>
 
       <Footer />
+    </main>
+  );
+}
+
+function LegalPage() {
+  return (
+    <main className="min-h-screen bg-[#060606] px-6 py-8 text-white">
+      <div className="mx-auto max-w-3xl">
+        <BackButton />
+
+        <div className="rounded-3xl border border-white/10 bg-white/[0.05] p-6 shadow-xl md:p-10">
+          <FileText className="mb-5 text-[#D4AF37]" size={34} />
+          <h1 className="text-3xl font-bold md:text-4xl">Mentions légales</h1>
+
+          <div className="mt-8 space-y-8 text-sm leading-7 text-white/65">
+            <section>
+              <h2 className="text-xl font-semibold text-white">
+                Éditeur du site
+              </h2>
+              <p className="mt-3">
+                Ruben PELAGE
+                <br />
+                Conseiller en création et protection de patrimoine
+                <br />
+                N° ORIAS : 22005046
+                <br />
+                Site internet : pelageruben.com
+                <br />
+                Email : contact@pelageruben.com
+                <br />
+                Téléphone : +596 696 29 89 21
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-white">Activité</h2>
+              <p className="mt-3">
+                Le site a pour objet la présentation d’activités
+                d’accompagnement, d’information et de conseil en création et
+                protection de patrimoine. Les informations diffusées sont
+                fournies à titre informatif et ne constituent ni un conseil
+                juridique, fiscal ou financier personnalisé, ni une offre
+                contractuelle.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-white">
+                Immatriculation ORIAS
+              </h2>
+              <p className="mt-3">
+                Immatriculé à l’ORIAS sous le numéro : 22005046.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-white">Hébergement</h2>
+              <p className="mt-3">
+                Site hébergé par Vercel Inc.
+                <br />
+                440 N Barranca Ave #4133
+                <br />
+                Covina, CA 91723
+                <br />
+                États-Unis
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-white">
+                Propriété intellectuelle
+              </h2>
+              <p className="mt-3">
+                L’ensemble des contenus présents sur ce site, notamment les
+                textes, images, logo, identité visuelle, éléments graphiques et
+                structure, est protégé par le droit de la propriété
+                intellectuelle. Toute reproduction, diffusion, modification ou
+                exploitation, totale ou partielle, sans autorisation écrite
+                préalable est interdite.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-white">
+                Données personnelles
+              </h2>
+              <p className="mt-3">
+                Les données éventuellement collectées via WhatsApp, Calendly ou
+                tout autre moyen de contact sont utilisées uniquement dans le
+                cadre des échanges avec les utilisateurs du site. Aucune donnée
+                personnelle n’est vendue ou cédée à des tiers.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-white">Cookies</h2>
+              <p className="mt-3">
+                Le site peut utiliser des cookies techniques nécessaires à son
+                bon fonctionnement ainsi que des outils de mesure d’audience.
+                L’utilisateur peut configurer son navigateur afin de refuser les
+                cookies.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-white">
+                Responsabilité
+              </h2>
+              <p className="mt-3">
+                L’éditeur du site ne saurait être tenu responsable d’éventuelles
+                interruptions du site, d’erreurs ou omissions dans les contenus,
+                ou de dommages directs ou indirects liés à l’utilisation du
+                site.
+              </p>
+            </section>
+          </div>
+        </div>
+
+        <Footer />
+      </div>
+    </main>
+  );
+}
+
+function PrivacyPage() {
+  return (
+    <main className="min-h-screen bg-[#060606] px-6 py-8 text-white">
+      <div className="mx-auto max-w-3xl">
+        <BackButton />
+
+        <div className="rounded-3xl border border-white/10 bg-white/[0.05] p-6 shadow-xl md:p-10">
+          <ShieldCheck className="mb-5 text-[#D4AF37]" size={34} />
+          <h1 className="text-3xl font-bold md:text-4xl">
+            Politique de confidentialité
+          </h1>
+
+          <div className="mt-8 space-y-8 text-sm leading-7 text-white/65">
+            <section>
+              <h2 className="text-xl font-semibold text-white">
+                1. Introduction
+              </h2>
+              <p className="mt-3">
+                Cette politique de confidentialité informe les utilisateurs sur
+                la manière dont leurs données personnelles peuvent être
+                collectées, utilisées et protégées.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-white">
+                2. Responsable du traitement
+              </h2>
+              <p className="mt-3">
+                Ruben PELAGE
+                <br />
+                Conseiller en création et protection de patrimoine
+                <br />
+                Email : contact@pelageruben.com
+                <br />
+                Téléphone : +596 696 29 89 21
+                <br />
+                N° ORIAS : 22005046
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-white">
+                3. Données collectées
+              </h2>
+              <p className="mt-3">
+                Les données pouvant être collectées incluent : nom, prénom,
+                adresse e-mail, numéro de téléphone, informations communiquées
+                volontairement, données transmises via WhatsApp, Calendly ou
+                formulaire de contact, ainsi que certaines données techniques
+                comme l’adresse IP, le type de navigateur, les données de
+                navigation et les cookies techniques.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-white">
+                4. Finalité de la collecte
+              </h2>
+              <p className="mt-3">
+                Les données collectées sont utilisées pour répondre aux demandes
+                de contact, organiser des rendez-vous, fournir des informations
+                ou accompagnements personnalisés, assurer le suivi des échanges
+                et améliorer l’expérience utilisateur du site.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-white">
+                5. Droits des utilisateurs
+              </h2>
+              <p className="mt-3">
+                Conformément au RGPD, vous disposez d’un droit d’accès, de
+                rectification, de suppression, d’opposition, de limitation du
+                traitement et de portabilité des données. Toute demande peut être
+                adressée à : contact@pelageruben.com.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-white">6. Contact</h2>
+              <p className="mt-3">
+                Ruben PELAGE
+                <br />
+                contact@pelageruben.com
+                <br />
+                +596 696 29 89 21
+              </p>
+            </section>
+          </div>
+        </div>
+
+        <Footer />
+      </div>
     </main>
   );
 }
@@ -395,6 +558,8 @@ export default function App() {
   if (path === "/methode") return <MethodePage />;
   if (path === "/audit") return <AuditPage />;
   if (path === "/contact") return <ContactPage />;
+  if (path === "/mentions-legales") return <LegalPage />;
+  if (path === "/confidentialite") return <PrivacyPage />;
 
   return <HomePage />;
 }
