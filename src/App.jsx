@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   MessageCircle,
   Instagram,
@@ -26,13 +26,19 @@ const linkedin = "https://www.linkedin.com/in/rubenpelage";
 const email = "mailto:ruben.pelage@gmail.com";
 
 function openCalendly() {
-  if (window.Calendly) {
-    window.Calendly.initPopupWidget({
-      url: "https://calendly.com/ruben-pelage/consultation",
-    });
+  if (window.Calendly && window.Calendly.initPopupWidget) {
+    window.Calendly.initPopupWidget({ url: calendly });
   } else {
-    window.open("https://calendly.com/ruben-pelage/consultation", "_blank");
+    window.open(calendly, "_blank");
   }
+}
+
+function CalendlyButton({ children, className = "" }) {
+  return (
+    <button type="button" onClick={openCalendly} className={className}>
+      {children}
+    </button>
+  );
 }
 
 function Footer({ setPage }) {
@@ -62,7 +68,10 @@ function Footer({ setPage }) {
 }
 
 function MethodCard({ icon: Icon, label, title, text, color = "gold" }) {
-  const accent = color === "teal" ? "text-[#65d6d6] bg-[#008080]/20" : "text-[#D4AF37] bg-[#D4AF37]/10";
+  const accent =
+    color === "teal"
+      ? "text-[#65d6d6] bg-[#008080]/20"
+      : "text-[#D4AF37] bg-[#D4AF37]/10";
 
   return (
     <div className="rounded-3xl border border-white/10 bg-white/[0.045] p-6 text-left transition hover:-translate-y-1 hover:border-[#D4AF37]/30">
@@ -75,7 +84,6 @@ function MethodCard({ icon: Icon, label, title, text, color = "gold" }) {
       </p>
 
       <h3 className="mt-2 text-2xl font-bold text-white">{title}</h3>
-
       <p className="mt-4 leading-7 text-white/55">{text}</p>
     </div>
   );
@@ -140,14 +148,9 @@ function MethodSection() {
   );
 }
 
-function LinkButton({ icon: Icon, title, subtitle, href }) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noreferrer"
-      className="flex items-center justify-between rounded-3xl border border-white/10 bg-white/[0.05] px-5 py-5 text-white shadow-[0_12px_40px_rgba(0,0,0,0.35)] transition hover:-translate-y-1 hover:border-[#D4AF37]/40"
-    >
+function LinkButton({ icon: Icon, title, subtitle, href, onClick }) {
+  const content = (
+    <>
       <div className="flex items-center gap-5">
         <Icon size={34} strokeWidth={2.3} className="text-[#D4AF37]" />
         <div>
@@ -156,6 +159,23 @@ function LinkButton({ icon: Icon, title, subtitle, href }) {
         </div>
       </div>
       <MoreVertical className="text-white/35" />
+    </>
+  );
+
+  const className =
+    "flex w-full items-center justify-between rounded-3xl border border-white/10 bg-white/[0.05] px-5 py-5 text-left text-white shadow-[0_12px_40px_rgba(0,0,0,0.35)] transition hover:-translate-y-1 hover:border-[#D4AF37]/40";
+
+  if (onClick) {
+    return (
+      <button type="button" onClick={onClick} className={className}>
+        {content}
+      </button>
+    );
+  }
+
+  return (
+    <a href={href} target="_blank" rel="noreferrer" className={className}>
+      {content}
     </a>
   );
 }
@@ -173,12 +193,9 @@ function HomePage({ setPage }) {
             </div>
           </div>
 
-          <button
-            onClick={openCalendly}
-            className="hidden rounded-full bg-[#D4AF37] px-6 py-3 text-sm font-semibold text-black md:inline-flex"
-          >
+          <CalendlyButton className="hidden rounded-full bg-[#D4AF37] px-6 py-3 text-sm font-semibold text-black md:inline-flex">
             Réserver mon audit
-          </button>
+          </CalendlyButton>
         </div>
       </header>
 
@@ -248,7 +265,7 @@ function HomePage({ setPage }) {
 
       <section className="mx-auto max-w-7xl px-6 py-24">
         <div className="grid gap-6 md:grid-cols-4">
-          <LinkButton icon={Phone} title="Appel découverte 30 min" subtitle="Calendly · Gratuit" href={calendly} />
+          <LinkButton icon={Phone} title="Appel découverte 30 min" subtitle="Calendly · Gratuit" onClick={openCalendly} />
           <LinkButton icon={Euro} title="Aide déclaration d’impôt" href={whatsapp} />
           <LinkButton icon={Rocket} title="Audit indépendant" subtitle="Gratuit" href={whatsapp} />
           <LinkButton icon={Globe} title="Site web" href="#" />
@@ -277,7 +294,7 @@ function MorePage({ setPage }) {
         </p>
 
         <div className="mt-10 space-y-5">
-          <LinkButton icon={Phone} title="Appel découverte 30 min - GRATUIT" subtitle="Calendly · Ruben PELAGE" href={calendly} />
+          <LinkButton icon={Phone} title="Appel découverte 30 min - GRATUIT" subtitle="Calendly · Ruben PELAGE" onClick={openCalendly} />
           <LinkButton icon={Euro} title="Besoin d’aide pour votre déclaration d’impôt ?" href={whatsapp} />
           <LinkButton icon={Rocket} title="Audit financier pour indépendant - GRATUIT" href={whatsapp} />
           <LinkButton icon={Globe} title="Site web" href="#" />
@@ -327,9 +344,7 @@ function LegalPage({ setPage }) {
 
             <section>
               <h2 className="text-xl font-semibold text-white">Immatriculation ORIAS</h2>
-              <p className="mt-3">
-                Immatriculé à l’ORIAS sous le numéro : 22005046.
-              </p>
+              <p className="mt-3">Immatriculé à l’ORIAS sous le numéro : 22005046.</p>
             </section>
 
             <section>
@@ -413,9 +428,7 @@ function PrivacyPage({ setPage }) {
             <section>
               <h2 className="text-xl font-semibold text-white">1. Introduction</h2>
               <p className="mt-3">
-                Cette politique de confidentialité informe les utilisateurs sur la
-                manière dont leurs données personnelles peuvent être collectées,
-                utilisées et protégées.
+                Cette politique de confidentialité informe les utilisateurs sur la manière dont leurs données personnelles peuvent être collectées, utilisées et protégées.
               </p>
             </section>
 
@@ -433,85 +446,63 @@ function PrivacyPage({ setPage }) {
             <section>
               <h2 className="text-xl font-semibold text-white">3. Données collectées</h2>
               <p className="mt-3">
-                Les données pouvant être collectées incluent : nom, prénom,
-                adresse e-mail, numéro de téléphone, informations communiquées
-                volontairement, données transmises via WhatsApp, Calendly ou formulaire
-                de contact, ainsi que certaines données techniques comme l’adresse IP,
-                le type de navigateur, les données de navigation et les cookies techniques.
+                Les données pouvant être collectées incluent : nom, prénom, adresse e-mail, numéro de téléphone, informations communiquées volontairement, données transmises via WhatsApp, Calendly ou formulaire de contact, ainsi que certaines données techniques comme l’adresse IP, le type de navigateur, les données de navigation et les cookies techniques.
               </p>
             </section>
 
             <section>
               <h2 className="text-xl font-semibold text-white">4. Finalité de la collecte</h2>
               <p className="mt-3">
-                Les données collectées sont utilisées pour répondre aux demandes de
-                contact, organiser des rendez-vous, fournir des informations ou
-                accompagnements personnalisés, assurer le suivi des échanges et
-                améliorer l’expérience utilisateur du site.
+                Les données collectées sont utilisées pour répondre aux demandes de contact, organiser des rendez-vous, fournir des informations ou accompagnements personnalisés, assurer le suivi des échanges et améliorer l’expérience utilisateur du site.
               </p>
             </section>
 
             <section>
               <h2 className="text-xl font-semibold text-white">5. Base légale du traitement</h2>
               <p className="mt-3">
-                Les traitements réalisés reposent sur le consentement de l’utilisateur,
-                l’exécution de mesures précontractuelles ou l’intérêt légitime lié à
-                l’activité professionnelle présentée sur le site.
+                Les traitements réalisés reposent sur le consentement de l’utilisateur, l’exécution de mesures précontractuelles ou l’intérêt légitime lié à l’activité professionnelle présentée sur le site.
               </p>
             </section>
 
             <section>
               <h2 className="text-xl font-semibold text-white">6. Conservation des données</h2>
               <p className="mt-3">
-                Les données personnelles sont conservées uniquement pendant la durée
-                nécessaire aux finalités pour lesquelles elles ont été collectées,
-                sauf obligation légale contraire.
+                Les données personnelles sont conservées uniquement pendant la durée nécessaire aux finalités pour lesquelles elles ont été collectées, sauf obligation légale contraire.
               </p>
             </section>
 
             <section>
               <h2 className="text-xl font-semibold text-white">7. Sécurité des données</h2>
               <p className="mt-3">
-                Des mesures raisonnables de sécurité sont mises en œuvre afin de
-                protéger les données contre l’accès non autorisé, la perte, la
-                divulgation ou toute utilisation abusive.
+                Des mesures raisonnables de sécurité sont mises en œuvre afin de protéger les données contre l’accès non autorisé, la perte, la divulgation ou toute utilisation abusive.
               </p>
             </section>
 
             <section>
               <h2 className="text-xl font-semibold text-white">8. Services tiers</h2>
               <p className="mt-3">
-                Le site peut utiliser des services externes tels que Calendly,
-                WhatsApp, Instagram, LinkedIn et Vercel. Ces services disposent de
-                leurs propres politiques de confidentialité.
+                Le site peut utiliser des services externes tels que Calendly, WhatsApp, Instagram, LinkedIn et Vercel. Ces services disposent de leurs propres politiques de confidentialité.
               </p>
             </section>
 
             <section>
               <h2 className="text-xl font-semibold text-white">9. Cookies</h2>
               <p className="mt-3">
-                Le site peut utiliser des cookies techniques et analytiques afin
-                d’assurer son bon fonctionnement, de mesurer l’audience et d’améliorer
-                l’expérience utilisateur. L’utilisateur peut désactiver les cookies
-                via les paramètres de son navigateur.
+                Le site peut utiliser des cookies techniques et analytiques afin d’assurer son bon fonctionnement, de mesurer l’audience et d’améliorer l’expérience utilisateur. L’utilisateur peut désactiver les cookies via les paramètres de son navigateur.
               </p>
             </section>
 
             <section>
               <h2 className="text-xl font-semibold text-white">10. Droits des utilisateurs</h2>
               <p className="mt-3">
-                Conformément au RGPD, vous disposez d’un droit d’accès, de rectification,
-                de suppression, d’opposition, de limitation du traitement et de
-                portabilité des données. Toute demande peut être adressée à :
-                ruben.pelage@gmail.com.
+                Conformément au RGPD, vous disposez d’un droit d’accès, de rectification, de suppression, d’opposition, de limitation du traitement et de portabilité des données. Toute demande peut être adressée à : ruben.pelage@gmail.com.
               </p>
             </section>
 
             <section>
               <h2 className="text-xl font-semibold text-white">11. Modification de la politique</h2>
               <p className="mt-3">
-                Cette politique de confidentialité peut être modifiée à tout moment
-                afin de rester conforme aux évolutions légales ou techniques.
+                Cette politique de confidentialité peut être modifiée à tout moment afin de rester conforme aux évolutions légales ou techniques.
               </p>
             </section>
 
@@ -534,6 +525,19 @@ function PrivacyPage({ setPage }) {
 
 export default function App() {
   const [page, setPage] = useState("home");
+
+  useEffect(() => {
+    const existingScript = document.querySelector(
+      'script[src="https://assets.calendly.com/assets/external/widget.js"]'
+    );
+
+    if (!existingScript) {
+      const script = document.createElement("script");
+      script.src = "https://assets.calendly.com/assets/external/widget.js";
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  }, []);
 
   if (page === "more") return <MorePage setPage={setPage} />;
   if (page === "legal") return <LegalPage setPage={setPage} />;
