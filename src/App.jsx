@@ -12,11 +12,16 @@ import {
   Mail,
   FileText,
   ShieldCheck,
+  Wallet,
+  Snowflake,
+  TrendingUp,
 } from "lucide-react";
 
 const calendly = "https://calendly.com/ruben-pelage/consultation";
+
 const whatsapp =
   "https://wa.me/596696298921?text=Bonjour%20Ruben,%20je%20souhaite%20faire%20un%20audit%20financier.%20Voici%20ma%20situation%20:";
+
 const instagram = "https://instagram.com/__rub3n__";
 const linkedin = "https://www.linkedin.com/in/rubenpelage";
 const email = "mailto:ruben.pelage@gmail.com";
@@ -41,33 +46,53 @@ function LinkButton({ icon: Icon, title, subtitle, href }) {
   );
 }
 
-function Footer({ goLegal, goPrivacy }) {
+function MethodCard({ icon: Icon, title, label, text }) {
+  return (
+    <div className="rounded-3xl border border-white/10 bg-white/[0.05] p-6 text-left">
+      <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full border border-[#C99A2E]/40 text-[#C99A2E]">
+        <Icon size={28} />
+      </div>
+
+      <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#C99A2E]">
+        {label}
+      </p>
+
+      <h3 className="mt-3 text-2xl font-bold text-white">{title}</h3>
+
+      <p className="mt-4 leading-7 text-white/60">{text}</p>
+    </div>
+  );
+}
+
+function Footer({ setPage }) {
   return (
     <footer className="mt-14 border-t border-black/10 pt-8 text-center text-xs text-black/45">
       <div className="flex justify-center gap-6 text-black/70">
-        <a href={instagram} target="_blank" rel="noreferrer" aria-label="Instagram">
+        <a href={instagram} target="_blank" rel="noreferrer">
           <Instagram size={24} />
         </a>
-        <a href={linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">
+        <a href={linkedin} target="_blank" rel="noreferrer">
           <Linkedin size={24} />
         </a>
-        <a href={whatsapp} target="_blank" rel="noreferrer" aria-label="WhatsApp">
+        <a href={whatsapp} target="_blank" rel="noreferrer">
           <MessageCircle size={24} />
         </a>
-        <a href={email} aria-label="Email">
+        <a href={email}>
           <Mail size={24} />
         </a>
       </div>
 
       <p className="mt-6 font-medium text-black/60">© 2026 Ruben PELAGE</p>
-      <p className="mt-1">Création & protection de patrimoine · N° ORIAS : 22005046</p>
+      <p className="mt-1">
+        Création & protection de patrimoine · N° ORIAS : 22005046
+      </p>
       <p className="mt-1">Martinique · France</p>
 
       <div className="mt-5 flex justify-center gap-4">
-        <button onClick={goLegal} className="underline underline-offset-4">
+        <button onClick={() => setPage("legal")} className="underline">
           Mentions légales
         </button>
-        <button onClick={goPrivacy} className="underline underline-offset-4">
+        <button onClick={() => setPage("privacy")} className="underline">
           Politique de confidentialité
         </button>
       </div>
@@ -85,11 +110,17 @@ function HomePage({ setPage }) {
           className="mx-auto h-40 w-40 rounded-full object-cover"
         />
 
-        <h1 className="mt-8 text-5xl font-bold tracking-tight">Ruben PELAGE</h1>
+        <h1 className="mt-8 text-5xl font-bold tracking-tight">
+          Ruben PELAGE
+        </h1>
 
         <p className="mx-auto mt-5 max-w-lg text-2xl font-medium leading-snug">
-          Conseiller — J’aide les actifs, familles et entrepreneurs à structurer,
-          protéger et développer leur patrimoine.
+          J’aide les actifs, familles et entrepreneurs à transformer le flou
+          financier en décisions stratégiques.
+        </p>
+
+        <p className="mx-auto mt-4 max-w-lg text-base leading-7 text-black/55">
+          Une approche claire, exigeante et pensée pour le long terme.
         </p>
 
         <div className="mt-8 flex justify-center gap-8">
@@ -122,10 +153,7 @@ function HomePage({ setPage }) {
           </button>
         </div>
 
-        <Footer
-          goLegal={() => setPage("legal")}
-          goPrivacy={() => setPage("privacy")}
-        />
+        <Footer setPage={setPage} />
       </div>
     </main>
   );
@@ -135,7 +163,10 @@ function MorePage({ setPage }) {
   return (
     <main className="min-h-screen bg-[#eeeeee] px-6 py-8 text-black">
       <div className="mx-auto max-w-xl">
-        <button onClick={() => setPage("home")} className="mb-6 flex items-center gap-2 text-black/60">
+        <button
+          onClick={() => setPage("home")}
+          className="mb-6 flex items-center gap-2 text-black/60"
+        >
           <ArrowLeft size={20} />
           Retour
         </button>
@@ -148,25 +179,66 @@ function MorePage({ setPage }) {
 
         <h1 className="mt-7 text-center text-4xl font-bold">Ruben PELAGE</h1>
 
-        <p className="mx-auto mt-4 max-w-lg text-center text-2xl font-medium leading-snug">
-          Création & protection de patrimoine.
-          <br />
-          Méthode Table / Frigo / Congélo.
+        <p className="mx-auto mt-5 max-w-lg text-center text-xl font-medium leading-snug">
+          J’aide les actifs, familles et entrepreneurs à transformer le flou
+          financier en décisions stratégiques.
         </p>
 
-        <div className="mt-8 flex justify-center gap-8">
-          <a href={instagram} target="_blank" rel="noreferrer">
-            <Instagram size={42} />
-          </a>
-          <a href={linkedin} target="_blank" rel="noreferrer">
-            <Linkedin size={42} />
-          </a>
-          <a href={whatsapp} target="_blank" rel="noreferrer">
-            <MessageCircle size={42} />
-          </a>
-        </div>
+        <p className="mx-auto mt-4 max-w-lg text-center text-base leading-7 text-black/55">
+          Pour cela, je m’appuie sur une méthode simple mais puissante :
+          Table / Frigo / Congélo.
+        </p>
 
-        <div className="mt-12 space-y-5">
+        <section className="mt-10 rounded-[2rem] bg-black px-5 py-8 text-white">
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.25em] text-[#C99A2E]">
+            Méthode Table / Frigo / Congélo
+          </p>
+
+          <h2 className="mx-auto mt-4 max-w-sm text-center text-3xl font-bold leading-tight">
+            Une mission précise pour chaque euro.
+          </h2>
+
+          <p className="mx-auto mt-4 max-w-md text-center text-sm leading-7 text-white/55">
+            Maîtriser le quotidien, sécuriser l’avenir proche et construire un
+            patrimoine durable.
+          </p>
+
+          <div className="mt-8 space-y-4">
+            <MethodCard
+              icon={Wallet}
+              label="Présent"
+              title="La Table"
+              text="Ce qui finance ta vie quotidienne : charges, dépenses, budget et arbitrages."
+            />
+
+            <MethodCard
+              icon={ShieldCheck}
+              label="Protection"
+              title="Le Frigo"
+              text="Ce qui sécurise tes projets courts, tes imprévus et ta tranquillité financière."
+            />
+
+            <MethodCard
+              icon={Snowflake}
+              label="Patrimoine"
+              title="Le Congélo"
+              text="Ce qui construit ton avenir : investissement, retraite, transmission et long terme."
+            />
+          </div>
+
+          <div className="mt-8 rounded-3xl border border-[#C99A2E]/30 bg-[#C99A2E]/10 p-5 text-center">
+            <TrendingUp className="mx-auto text-[#C99A2E]" size={34} />
+            <p className="mt-4 text-lg font-semibold">
+              Un argent sans stratégie crée du stress.
+            </p>
+            <p className="mt-2 text-sm leading-6 text-white/60">
+              Un argent structuré crée de la liberté, de la vision et des
+              possibilités.
+            </p>
+          </div>
+        </section>
+
+        <div className="mt-10 space-y-5">
           <LinkButton
             icon={Phone}
             title="Appel découverte 30 min - GRATUIT"
@@ -186,17 +258,10 @@ function MorePage({ setPage }) {
             href={whatsapp}
           />
 
-          <LinkButton
-            icon={Globe}
-            title="Site web"
-            href="https://project-w7cqu.vercel.app"
-          />
+          <LinkButton icon={Globe} title="Site web" href="#" />
         </div>
 
-        <Footer
-          goLegal={() => setPage("legal")}
-          goPrivacy={() => setPage("privacy")}
-        />
+        <Footer setPage={setPage} />
       </div>
     </main>
   );
@@ -206,69 +271,43 @@ function LegalPage({ setPage }) {
   return (
     <main className="min-h-screen bg-[#f2f2f2] px-6 py-8 text-black">
       <div className="mx-auto max-w-2xl">
-        <button onClick={() => setPage("home")} className="mb-8 flex items-center gap-2 text-black/60">
+        <button
+          onClick={() => setPage("home")}
+          className="mb-8 flex items-center gap-2 text-black/60"
+        >
           <ArrowLeft size={20} />
           Retour
         </button>
 
-        <div className="rounded-3xl bg-white p-6 shadow-[0_12px_30px_rgba(0,0,0,0.08)]">
+        <div className="rounded-3xl bg-white p-6 shadow-xl">
           <FileText className="mb-5" size={34} />
           <h1 className="text-3xl font-bold">Mentions légales</h1>
 
           <div className="mt-8 space-y-7 text-sm leading-7 text-black/70">
-            <div>
-              <h2 className="text-lg font-semibold text-black">Éditeur du site</h2>
-              <p className="mt-2">
-                Ruben PELAGE — Conseiller en création et protection de patrimoine.
-                <br />
-                N° ORIAS : 22005046
-                <br />
-                Email : ruben.pelage@gmail.com
-                <br />
-                Téléphone : +596 696 29 89 21
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-lg font-semibold text-black">Activité</h2>
-              <p className="mt-2">
-                Le site présente une activité d’information, d’accompagnement et de conseil
-                en création et protection de patrimoine. Les informations diffusées sont
-                fournies à titre informatif et ne constituent pas un conseil personnalisé
-                sans analyse préalable de la situation.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-lg font-semibold text-black">Immatriculation ORIAS</h2>
-              <p className="mt-2">
-                Immatriculé à l’ORIAS sous le numéro : 22005046.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-lg font-semibold text-black">Hébergement</h2>
-              <p className="mt-2">
-                Site hébergé par Vercel Inc.
-                <br />
-                440 N Barranca Ave #4133, Covina, CA 91723, États-Unis.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-lg font-semibold text-black">Propriété intellectuelle</h2>
-              <p className="mt-2">
-                Les textes, images, logos, éléments graphiques et contenus du site sont protégés.
-                Toute reproduction ou utilisation sans autorisation préalable est interdite.
-              </p>
-            </div>
+            <p>
+              <strong>Éditeur :</strong> Ruben PELAGE — Conseiller en création
+              et protection de patrimoine.
+            </p>
+            <p>
+              <strong>N° ORIAS :</strong> 22005046
+            </p>
+            <p>
+              <strong>Email :</strong> ruben.pelage@gmail.com
+              <br />
+              <strong>Téléphone :</strong> +596 696 29 89 21
+            </p>
+            <p>
+              <strong>Hébergement :</strong> Vercel Inc., 440 N Barranca Ave
+              #4133, Covina, CA 91723, États-Unis.
+            </p>
+            <p>
+              Les contenus du site sont protégés par le droit de la propriété
+              intellectuelle. Toute reproduction sans autorisation est interdite.
+            </p>
           </div>
         </div>
 
-        <Footer
-          goLegal={() => setPage("legal")}
-          goPrivacy={() => setPage("privacy")}
-        />
+        <Footer setPage={setPage} />
       </div>
     </main>
   );
@@ -278,76 +317,42 @@ function PrivacyPage({ setPage }) {
   return (
     <main className="min-h-screen bg-[#f2f2f2] px-6 py-8 text-black">
       <div className="mx-auto max-w-2xl">
-        <button onClick={() => setPage("home")} className="mb-8 flex items-center gap-2 text-black/60">
+        <button
+          onClick={() => setPage("home")}
+          className="mb-8 flex items-center gap-2 text-black/60"
+        >
           <ArrowLeft size={20} />
           Retour
         </button>
 
-        <div className="rounded-3xl bg-white p-6 shadow-[0_12px_30px_rgba(0,0,0,0.08)]">
+        <div className="rounded-3xl bg-white p-6 shadow-xl">
           <ShieldCheck className="mb-5" size={34} />
           <h1 className="text-3xl font-bold">Politique de confidentialité</h1>
 
           <div className="mt-8 space-y-7 text-sm leading-7 text-black/70">
-            <div>
-              <h2 className="text-lg font-semibold text-black">Responsable du traitement</h2>
-              <p className="mt-2">
-                Ruben PELAGE
-                <br />
-                Email : ruben.pelage@gmail.com
-                <br />
-                Téléphone : +596 696 29 89 21
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-lg font-semibold text-black">Données collectées</h2>
-              <p className="mt-2">
-                Les données pouvant être collectées incluent : nom, prénom, adresse e-mail,
-                numéro de téléphone et informations communiquées volontairement lors des échanges.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-lg font-semibold text-black">Utilisation des données</h2>
-              <p className="mt-2">
-                Les données sont utilisées pour répondre aux demandes de contact,
-                organiser des rendez-vous, assurer le suivi des échanges et proposer
-                un accompagnement adapté.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-lg font-semibold text-black">Services tiers</h2>
-              <p className="mt-2">
-                Le site peut utiliser des services externes comme Calendly, WhatsApp,
-                Instagram, LinkedIn ou Vercel. Ces services disposent de leurs propres
-                politiques de confidentialité.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-lg font-semibold text-black">Vos droits</h2>
-              <p className="mt-2">
-                Conformément au RGPD, vous pouvez demander l’accès, la rectification
-                ou la suppression de vos données personnelles en écrivant à :
-                ruben.pelage@gmail.com.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-lg font-semibold text-black">Conservation</h2>
-              <p className="mt-2">
-                Les données sont conservées uniquement pendant la durée nécessaire aux finalités
-                pour lesquelles elles ont été collectées, sauf obligation légale contraire.
-              </p>
-            </div>
+            <p>
+              Les données pouvant être collectées incluent : nom, prénom,
+              adresse e-mail, numéro de téléphone et informations communiquées
+              volontairement.
+            </p>
+            <p>
+              Elles sont utilisées uniquement pour répondre aux demandes de
+              contact, organiser les rendez-vous et assurer le suivi des
+              échanges.
+            </p>
+            <p>
+              Aucune donnée personnelle n’est vendue ou transmise à des tiers à
+              des fins commerciales.
+            </p>
+            <p>
+              Conformément au RGPD, vous pouvez demander l’accès, la
+              rectification ou la suppression de vos données à :
+              ruben.pelage@gmail.com.
+            </p>
           </div>
         </div>
 
-        <Footer
-          goLegal={() => setPage("legal")}
-          goPrivacy={() => setPage("privacy")}
-        />
+        <Footer setPage={setPage} />
       </div>
     </main>
   );
