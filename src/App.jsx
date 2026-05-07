@@ -22,7 +22,7 @@ const calendly = "https://calendly.com/ruben-pelage/consultation";
 const whatsapp = "https://wa.me/596696298921?text=Bonjour%20Ruben,%20je%20souhaite%20faire%20un%20audit%20financier.%20Voici%20ma%20situation%20:";
 const instagram = "https://instagram.com/__rub3n__";
 const linkedin = "https://www.linkedin.com/in/rubenpelage";
-
+ 
 function Button({ children, href, variant = "primary" }) {
   const base =
     "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#080808]";
