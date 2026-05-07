@@ -4,5 +4,12 @@
       "source": "/(.*)",
       "destination": "/index.html"
     }
+  ],
+  "redirects": [
+    {
+      "source": "http://pelageruben.com/(.*)",
+      "destination": "https://pelageruben.com/$1",
+      "permanent": true
+    }
   ]
 }
