@@ -26,10 +26,13 @@ const linkedin = "https://www.linkedin.com/in/rubenpelage";
 const email = "mailto:ruben.pelage@gmail.com";
 
 function openCalendly() {
-  window.Calendly.initPopupWidget({
-    url: "https://calendly.com/ruben-pelage/consultation",
-  });
-  return false;
+  if (window.Calendly) {
+    window.Calendly.initPopupWidget({
+      url: "https://calendly.com/ruben-pelage/consultation",
+    });
+  } else {
+    window.open("https://calendly.com/ruben-pelage/consultation", "_blank");
+  }
 }
 
 function Footer({ setPage }) {
@@ -171,11 +174,11 @@ function HomePage({ setPage }) {
           </div>
 
           <button
-              onClick={openCalendly}
-              className="hidden rounded-full bg-[#D4AF37] px-6 py-3 text-sm font-semibold text-black md:inline-flex"
-            >
-              Réserver mon audit
-            </button>
+            onClick={openCalendly}
+            className="hidden rounded-full bg-[#D4AF37] px-6 py-3 text-sm font-semibold text-black md:inline-flex"
+          >
+            Réserver mon audit
+          </button>
         </div>
       </header>
 
