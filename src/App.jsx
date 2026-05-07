@@ -163,12 +163,6 @@ function HomePage({ setPage }) {
             </div>
           </div>
 
-          <nav className="hidden gap-8 text-sm text-white/55 md:flex">
-            <a href="#methode" className="hover:text-white">Méthode</a>
-            <button onClick={() => setPage("more")} className="hover:text-white">Liens</button>
-            <button onClick={() => setPage("legal")} className="hover:text-white">Mentions</button>
-          </nav>
-
           <a
             href={calendly}
             target="_blank"
