@@ -25,6 +25,13 @@ const instagram = "https://instagram.com/__rub3n__";
 const linkedin = "https://www.linkedin.com/in/rubenpelage";
 const email = "mailto:ruben.pelage@gmail.com";
 
+function openCalendly() {
+  window.Calendly.initPopupWidget({
+    url: "https://calendly.com/ruben-pelage/consultation",
+  });
+  return false;
+}
+
 function Footer({ setPage }) {
   return (
     <footer className="mt-20 border-t border-white/10 pt-8 text-center text-xs text-white/45">
@@ -163,14 +170,12 @@ function HomePage({ setPage }) {
             </div>
           </div>
 
-          <a
-            href={calendly}
-            target="_blank"
-            rel="noreferrer"
-            className="hidden rounded-full bg-[#D4AF37] px-6 py-3 text-sm font-semibold text-black md:inline-flex"
-          >
-            Réserver mon audit
-          </a>
+          <button
+              onClick={openCalendly}
+              className="hidden rounded-full bg-[#D4AF37] px-6 py-3 text-sm font-semibold text-black md:inline-flex"
+            >
+              Réserver mon audit
+            </button>
         </div>
       </header>
 
