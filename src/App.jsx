@@ -6,8 +6,12 @@ function Button({ children, href, variant = "primary" }) { const base = "inline-
 
 const styles = variant === "primary" ? "bg-[#C99A2E] text-white hover:bg-[#D8B04A] shadow-[0_18px_50px_rgba(201,154,46,0.22)]" : "border border-black/70 bg-transparent text-black hover:bg-black hover:text-white";
 
-return ( <a href={href} target="_blank" rel="noreferrer" className={${base} ${styles}}> {children} </a> ); }
-
+return (
+  <a href={href} target="_blank" rel="noreferrer" className={`${base} ${styles}`}>
+    {children}
+  </a>
+);
+                                                          
 function Feature({ icon: Icon, title, text }) { return ( <div className="flex gap-5 border-black/10 px-6 py-6 md:border-r last:border-r-0"> <div className="mt-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-black/30 text-black"> <Icon size={23} strokeWidth={1.7} /> </div> <div> <h3 className="text-sm font-bold uppercase tracking-[0.18em] text-black">{title}</h3> <p className="mt-2 max-w-xs text-[15px] leading-7 text-black/65">{text}</p> </div> </div> ); }
 
 export default function App() { return ( <main className="min-h-screen bg-[#f5f3ef] text-black"> <div className="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(0,0,0,0.04),transparent_35%)]" />
