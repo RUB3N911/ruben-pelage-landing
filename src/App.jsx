@@ -356,6 +356,35 @@ function ContactPage() {
     <main className="min-h-screen bg-[#060606] text-white">
       <Navbar />
 
+      <style>
+        {`
+          @keyframes fadeUp {
+            from {
+              opacity: 0;
+              transform: translateY(28px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          @keyframes glowMove {
+            0% {
+              transform: translateX(-120%);
+              opacity: 0;
+            }
+            45% {
+              opacity: 1;
+            }
+            100% {
+              transform: translateX(120%);
+              opacity: 0;
+            }
+          }
+        `}
+      </style>
+
       <section className="mx-auto max-w-5xl px-6 py-24">
         <div className="max-w-3xl">
           <p className="text-sm uppercase tracking-[0.3em] text-[#D4AF37]">
@@ -376,32 +405,72 @@ function ContactPage() {
             href={whatsapp}
             target="_blank"
             rel="noreferrer"
-            className="rounded-3xl border border-white/10 bg-white/[0.04] p-8"
+            style={{ animationDelay: "100ms" }}
+            className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-8 opacity-0 shadow-[0_20px_70px_rgba(0,0,0,0.35)] transition duration-500 animate-[fadeUp_0.8s_ease_forwards] hover:-translate-y-2 hover:border-[#D4AF37]/50"
           >
-            <MessageCircle className="text-[#D4AF37]" />
-            <h3 className="mt-6 text-2xl font-bold">WhatsApp</h3>
-            <p className="mt-3 text-white/60">Échange rapide et direct.</p>
+            <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/10 to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
+            <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:animate-[glowMove_1.4s_ease]" />
+
+            <MessageCircle className="relative text-[#D4AF37] transition duration-500 group-hover:scale-110" />
+
+            <h3 className="relative mt-6 text-2xl font-bold">
+              WhatsApp
+            </h3>
+
+            <p className="relative mt-3 text-white/60">
+              Échange rapide et direct.
+            </p>
+
+            <p className="relative mt-8 text-sm font-semibold text-[#D4AF37] opacity-0 transition duration-500 group-hover:opacity-100">
+              Me contacter →
+            </p>
           </a>
 
           <a
             href={email}
-            className="rounded-3xl border border-white/10 bg-white/[0.04] p-8"
+            style={{ animationDelay: "300ms" }}
+            className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-8 opacity-0 shadow-[0_20px_70px_rgba(0,0,0,0.35)] transition duration-500 animate-[fadeUp_0.8s_ease_forwards] hover:-translate-y-2 hover:border-[#65d6d6]/50"
           >
-            <Mail className="text-[#D4AF37]" />
-            <h3 className="mt-6 text-2xl font-bold">Email</h3>
-            <p className="mt-3 text-white/60">contact@pelageruben.com</p>
+            <div className="absolute inset-0 bg-gradient-to-br from-[#008080]/15 to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
+            <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:animate-[glowMove_1.4s_ease]" />
+
+            <Mail className="relative text-[#65d6d6] transition duration-500 group-hover:scale-110" />
+
+            <h3 className="relative mt-6 text-2xl font-bold">
+              Email
+            </h3>
+
+            <p className="relative mt-3 text-white/60">
+              contact@pelageruben.com
+            </p>
+
+            <p className="relative mt-8 text-sm font-semibold text-[#65d6d6] opacity-0 transition duration-500 group-hover:opacity-100">
+              Envoyer un email →
+            </p>
           </a>
 
           <a
             href={calendly}
             target="_blank"
             rel="noreferrer"
-            className="rounded-3xl border border-white/10 bg-white/[0.04] p-8"
+            style={{ animationDelay: "500ms" }}
+            className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-8 opacity-0 shadow-[0_20px_70px_rgba(0,0,0,0.35)] transition duration-500 animate-[fadeUp_0.8s_ease_forwards] hover:-translate-y-2 hover:border-[#D4AF37]/50"
           >
-            <Phone className="text-[#D4AF37]" />
-            <h3 className="mt-6 text-2xl font-bold">Audit offert</h3>
-            <p className="mt-3 text-white/60">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/10 to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
+            <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:animate-[glowMove_1.4s_ease]" />
+
+            <Phone className="relative text-[#D4AF37] transition duration-500 group-hover:scale-110" />
+
+            <h3 className="relative mt-6 text-2xl font-bold">
+              Audit offert
+            </h3>
+
+            <p className="relative mt-3 text-white/60">
               Réserver un échange stratégique.
+            </p>
+
+            <p className="relative mt-8 text-sm font-semibold text-[#D4AF37] opacity-0 transition duration-500 group-hover:opacity-100">
+              Réserver maintenant →
             </p>
           </a>
         </div>
