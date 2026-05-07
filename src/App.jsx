@@ -11,6 +11,7 @@ import {
   Phone,
   FileText,
   ArrowLeft,
+  TrendingUp,
 } from "lucide-react";
 
 const whatsapp =
@@ -147,15 +148,39 @@ function Hero() {
   );
 }
 
-function MethodCard({ icon: Icon, title, text }) {
+function MethodCard({ icon: Icon, label, title, text, color = "gold", delay = "0ms" }) {
+  const isTeal = color === "teal";
+
   return (
-    <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-8">
-      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#D4AF37]/10 text-[#D4AF37]">
+    <div
+      style={{ animationDelay: delay }}
+      className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.045] p-8 opacity-0 shadow-[0_20px_80px_rgba(0,0,0,0.35)] transition duration-500 animate-[fadeUp_0.8s_ease_forwards] hover:-translate-y-2 hover:border-[#D4AF37]/40"
+    >
+      <div className="absolute inset-0 bg-gradient-to-br from-white/[0.08] to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
+
+      <div
+        className={`relative mb-8 flex h-16 w-16 items-center justify-center rounded-2xl ${
+          isTeal ? "bg-[#008080]/20 text-[#65d6d6]" : "bg-[#D4AF37]/10 text-[#D4AF37]"
+        } transition duration-500 group-hover:scale-110`}
+      >
         <Icon size={30} />
       </div>
 
-      <h3 className="mt-6 text-2xl font-bold text-white">{title}</h3>
-      <p className="mt-4 leading-8 text-white/60">{text}</p>
+      <p
+        className={`relative text-xs font-semibold uppercase tracking-[0.35em] ${
+          isTeal ? "text-[#65d6d6]" : "text-[#D4AF37]"
+        }`}
+      >
+        {label}
+      </p>
+
+      <h3 className="relative mt-4 text-3xl font-bold text-white">
+        {title}
+      </h3>
+
+      <p className="relative mt-5 leading-8 text-white/60">
+        {text}
+      </p>
     </div>
   );
 }
@@ -165,40 +190,103 @@ function MethodePage() {
     <main className="min-h-screen bg-[#060606] text-white">
       <Navbar />
 
+      <style>
+        {`
+          @keyframes fadeUp {
+            from {
+              opacity: 0;
+              transform: translateY(28px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          @keyframes glowPulse {
+            0%, 100% {
+              opacity: .35;
+              transform: scale(1);
+            }
+            50% {
+              opacity: .75;
+              transform: scale(1.04);
+            }
+          }
+
+          @keyframes lineGrow {
+            from {
+              transform: scaleX(0);
+            }
+            to {
+              transform: scaleX(1);
+            }
+          }
+        `}
+      </style>
+
       <section className="mx-auto max-w-7xl px-6 py-24">
-        <div className="max-w-3xl">
-          <p className="text-sm uppercase tracking-[0.3em] text-[#D4AF37]">
-            Méthode Table / Frigo / Congélo
-          </p>
+        <div className="relative overflow-hidden rounded-[2.8rem] border border-white/10 bg-[#0d0d0d] px-6 py-16 shadow-[0_30px_100px_rgba(0,0,0,0.45)] md:px-12">
+          <div className="absolute left-1/2 top-0 h-96 w-96 -translate-x-1/2 rounded-full bg-[#D4AF37]/10 blur-[120px] animate-[glowPulse_5s_ease-in-out_infinite]" />
 
-          <h1 className="mt-6 text-5xl font-bold md:text-7xl">
-            Une structure claire pour ton argent.
-          </h1>
+          <div className="relative mx-auto max-w-4xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#D4AF37]">
+              Méthode Table / Frigo / Congélo
+            </p>
 
-          <p className="mt-8 text-xl leading-9 text-white/65">
-            Une méthode pensée pour reprendre le contrôle, sécuriser ton avenir
-            et construire un patrimoine durable.
-          </p>
-        </div>
+            <h1 className="mx-auto mt-6 max-w-4xl text-5xl font-bold leading-tight md:text-7xl">
+              Une mission précise pour chaque euro.
+            </h1>
 
-        <div className="mt-16 grid gap-8 md:grid-cols-3">
-          <MethodCard
-            icon={Wallet}
-            title="La Table"
-            text="Le quotidien : charges, dépenses, équilibre et stabilité financière."
-          />
+            <p className="mx-auto mt-8 max-w-2xl text-lg leading-8 text-white/60 md:text-xl">
+              Transformer le flou financier en structure claire : maîtriser le quotidien,
+              sécuriser l’avenir proche et construire durablement.
+            </p>
 
-          <MethodCard
-            icon={ShieldCheck}
-            title="Le Frigo"
-            text="La sécurité : épargne, imprévus, sérénité et protection."
-          />
+            <div className="mx-auto mt-10 h-px max-w-xl origin-left bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent animate-[lineGrow_1.2s_ease_forwards]" />
+          </div>
 
-          <MethodCard
-            icon={Snowflake}
-            title="Le Congélo"
-            text="Le long terme : investissement, retraite, patrimoine et transmission."
-          />
+          <div className="relative mt-16 grid gap-8 md:grid-cols-3">
+            <MethodCard
+              icon={Wallet}
+              label="Présent"
+              title="La Table"
+              delay="100ms"
+              text="Ce qui finance le quotidien : charges, dépenses, arbitrages et stabilité."
+            />
+
+            <MethodCard
+              icon={ShieldCheck}
+              label="Protection"
+              title="Le Frigo"
+              color="teal"
+              delay="300ms"
+              text="Ce qui sécurise l’avenir proche : épargne disponible, imprévus et sérénité."
+            />
+
+            <MethodCard
+              icon={Snowflake}
+              label="Patrimoine"
+              title="Le Congélo"
+              delay="500ms"
+              text="Ce qui construit le long terme : investissement, retraite, transmission et patrimoine."
+            />
+          </div>
+
+          <div
+            style={{ animationDelay: "700ms" }}
+            className="relative mx-auto mt-14 max-w-3xl rounded-[2rem] border border-[#D4AF37]/25 bg-[#D4AF37]/10 p-8 text-center opacity-0 animate-[fadeUp_0.8s_ease_forwards]"
+          >
+            <TrendingUp className="mx-auto text-[#D4AF37]" size={38} />
+
+            <p className="mt-5 text-2xl font-bold leading-snug">
+              Un argent sans stratégie crée du stress.
+            </p>
+
+            <p className="mx-auto mt-4 max-w-xl leading-8 text-white/60">
+              Un argent structuré crée de la liberté, de la vision et des possibilités.
+            </p>
+          </div>
         </div>
       </section>
 
