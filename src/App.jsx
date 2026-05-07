@@ -395,6 +395,141 @@ function LegalPage({ setPage }) {
   );
 }
 
+function PrivacyPage({ setPage }) {
+  return (
+    <main className="min-h-screen bg-[#060606] px-6 py-8 text-white">
+      <div className="mx-auto max-w-3xl">
+        <button onClick={() => setPage("home")} className="mb-8 flex items-center gap-2 text-white/60">
+          <ArrowLeft size={20} /> Retour
+        </button>
+
+        <div className="rounded-3xl border border-white/10 bg-white/[0.05] p-6 shadow-xl md:p-10">
+          <ShieldCheck className="mb-5 text-[#D4AF37]" size={34} />
+          <h1 className="text-3xl font-bold md:text-4xl">Politique de confidentialité</h1>
+
+          <div className="mt-8 space-y-8 text-sm leading-7 text-white/65">
+            <section>
+              <h2 className="text-xl font-semibold text-white">1. Introduction</h2>
+              <p className="mt-3">
+                Cette politique de confidentialité informe les utilisateurs sur la
+                manière dont leurs données personnelles peuvent être collectées,
+                utilisées et protégées.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-white">2. Responsable du traitement</h2>
+              <p className="mt-3">
+                Ruben PELAGE<br />
+                Conseiller en création et protection de patrimoine<br />
+                Email : ruben.pelage@gmail.com<br />
+                Téléphone : +596 696 29 89 21<br />
+                N° ORIAS : 22005046
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-white">3. Données collectées</h2>
+              <p className="mt-3">
+                Les données pouvant être collectées incluent : nom, prénom,
+                adresse e-mail, numéro de téléphone, informations communiquées
+                volontairement, données transmises via WhatsApp, Calendly ou formulaire
+                de contact, ainsi que certaines données techniques comme l’adresse IP,
+                le type de navigateur, les données de navigation et les cookies techniques.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-white">4. Finalité de la collecte</h2>
+              <p className="mt-3">
+                Les données collectées sont utilisées pour répondre aux demandes de
+                contact, organiser des rendez-vous, fournir des informations ou
+                accompagnements personnalisés, assurer le suivi des échanges et
+                améliorer l’expérience utilisateur du site.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-white">5. Base légale du traitement</h2>
+              <p className="mt-3">
+                Les traitements réalisés reposent sur le consentement de l’utilisateur,
+                l’exécution de mesures précontractuelles ou l’intérêt légitime lié à
+                l’activité professionnelle présentée sur le site.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-white">6. Conservation des données</h2>
+              <p className="mt-3">
+                Les données personnelles sont conservées uniquement pendant la durée
+                nécessaire aux finalités pour lesquelles elles ont été collectées,
+                sauf obligation légale contraire.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-white">7. Sécurité des données</h2>
+              <p className="mt-3">
+                Des mesures raisonnables de sécurité sont mises en œuvre afin de
+                protéger les données contre l’accès non autorisé, la perte, la
+                divulgation ou toute utilisation abusive.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-white">8. Services tiers</h2>
+              <p className="mt-3">
+                Le site peut utiliser des services externes tels que Calendly,
+                WhatsApp, Instagram, LinkedIn et Vercel. Ces services disposent de
+                leurs propres politiques de confidentialité.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-white">9. Cookies</h2>
+              <p className="mt-3">
+                Le site peut utiliser des cookies techniques et analytiques afin
+                d’assurer son bon fonctionnement, de mesurer l’audience et d’améliorer
+                l’expérience utilisateur. L’utilisateur peut désactiver les cookies
+                via les paramètres de son navigateur.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-white">10. Droits des utilisateurs</h2>
+              <p className="mt-3">
+                Conformément au RGPD, vous disposez d’un droit d’accès, de rectification,
+                de suppression, d’opposition, de limitation du traitement et de
+                portabilité des données. Toute demande peut être adressée à :
+                ruben.pelage@gmail.com.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-white">11. Modification de la politique</h2>
+              <p className="mt-3">
+                Cette politique de confidentialité peut être modifiée à tout moment
+                afin de rester conforme aux évolutions légales ou techniques.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-white">12. Contact</h2>
+              <p className="mt-3">
+                Ruben PELAGE<br />
+                ruben.pelage@gmail.com<br />
+                +596 696 29 89 21
+              </p>
+            </section>
+          </div>
+        </div>
+
+        <Footer setPage={setPage} />
+      </div>
+    </main>
+  );
+}
+
 export default function App() {
   const [page, setPage] = useState("home");
 
