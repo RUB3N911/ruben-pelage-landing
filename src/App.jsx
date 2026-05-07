@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   MessageCircle,
   Instagram,
@@ -12,6 +12,8 @@ import {
   FileText,
   ArrowLeft,
   TrendingUp,
+  Menu,
+  X,
 } from "lucide-react";
 
 const whatsapp =
@@ -24,40 +26,88 @@ const linkedin = "https://linkedin.com/in/rubenpelage";
 const email = "mailto:contact@pelageruben.com";
 
 function Navbar() {
+  const [open, setOpen] = useState(false);
+
+  const navItems = [
+    ["Accueil", "/"],
+    ["Méthode", "/methode"],
+    ["Audit", "/audit"],
+    ["Contact", "/contact"],
+  ];
+
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-black/80 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
-        <a href="/" className="flex items-center gap-4">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-6 md:py-5">
+        <a href="/" className="flex min-w-0 items-center gap-3 md:gap-4">
           <img
             src="/logo-blanc-ecriture.png"
             alt="Ruben PELAGE"
-            className="h-12"
+            className="h-10 w-auto md:h-12"
           />
 
-          <div>
-            <p className="text-lg font-bold text-white">Ruben PELAGE</p>
-            <p className="text-xs text-white/45">
+          <div className="min-w-0">
+            <p className="truncate text-base font-bold text-white md:text-lg">
+              Ruben PELAGE
+            </p>
+            <p className="hidden text-xs text-white/45 sm:block">
               Création & protection de patrimoine
             </p>
           </div>
         </a>
 
         <nav className="hidden items-center gap-8 md:flex">
-          <a href="/" className="text-white/60 hover:text-white">Accueil</a>
-          <a href="/methode" className="text-white/60 hover:text-white">Méthode</a>
-          <a href="/audit" className="text-white/60 hover:text-white">Audit</a>
-          <a href="/contact" className="text-white/60 hover:text-white">Contact</a>
+          {navItems.map(([label, href]) => (
+            <a key={href} href={href} className="text-white/60 hover:text-white">
+              {label}
+            </a>
+          ))}
         </nav>
 
         <a
           href={calendly}
           target="_blank"
           rel="noreferrer"
-          className="hidden rounded-full bg-[#D4AF37] px-6 py-3 font-semibold text-black md:inline-flex"
+          className="hidden rounded-full bg-[#D4AF37] px-6 py-3 font-semibold text-black transition hover:bg-[#e7c14a] md:inline-flex"
         >
           Réserver mon audit
         </a>
+
+        <button
+          type="button"
+          onClick={() => setOpen((value) => !value)}
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white md:hidden"
+          aria-label="Ouvrir le menu"
+        >
+          {open ? <X size={22} /> : <Menu size={22} />}
+        </button>
       </div>
+
+      {open && (
+        <div className="border-t border-white/10 bg-[#070707] px-5 py-5 md:hidden">
+          <nav className="flex flex-col gap-2">
+            {navItems.map(([label, href]) => (
+              <a
+                key={href}
+                href={href}
+                onClick={() => setOpen(false)}
+                className="rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 text-white/75 transition hover:bg-white/[0.06] hover:text-white"
+              >
+                {label}
+              </a>
+            ))}
+
+            <a
+              href={calendly}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => setOpen(false)}
+              className="mt-3 inline-flex items-center justify-center rounded-full bg-[#D4AF37] px-6 py-4 font-semibold text-black"
+            >
+              Réserver mon audit
+            </a>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
