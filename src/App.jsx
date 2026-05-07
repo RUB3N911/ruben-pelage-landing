@@ -1,109 +1,190 @@
-import React from "react";
-import { motion } from "framer-motion";
-import {
-  ArrowRight,
-  ShieldCheck,
-  PiggyBank,
-  Snowflake,
-  Wallet,
-  TrendingUp,
-  CheckCircle2,
-  CalendarDays,
-  Instagram,
-  Linkedin,
-  MessageCircle,
-  Sparkles,
-  Lock,
-  Target,
-  BarChart3,
-} from "lucide-react";
+import React from "react"; import { ArrowRight, CalendarDays, MessageCircle, ShieldCheck, TrendingUp, Target, Instagram, Linkedin, } from "lucide-react";
 
-const calendly = "https://calendly.com/ruben-pelage/consultation";
-const whatsapp = "https://wa.me/596696298921?text=Bonjour%20Ruben,%20je%20souhaite%20faire%20un%20audit%20financier.%20Voici%20ma%20situation%20:";
-const instagram = "https://instagram.com/__rub3n__";
-const linkedin = "https://www.linkedin.com/in/rubenpelage";
- 
-function Button({ children, href, variant = "primary" }) {
-  const base =
-    "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#080808]";
-  const styles =
-    variant === "primary"
-      ? "bg-[#D4AF37] text-black hover:bg-[#f2d678] hover:shadow-[0_0_50px_rgba(212,175,55,0.28)] focus:ring-[#D4AF37]"
-      : "border border-white/15 bg-white/5 text-white hover:bg-white/10 focus:ring-white/30";
+const calendly = "https://calendly.com/ruben-pelage/consultation"; const whatsapp = "https://wa.me/596696298921?text=Bonjour%20Ruben,%20je%20souhaite%20faire%20un%20audit%20financier.%20Voici%20ma%20situation%20:"; const instagram = "https://instagram.com/rub3n"; const linkedin = "https://www.linkedin.com/in/rubenpelage";
 
-  return (
-    <a href={href} target="_blank" rel="noreferrer" className={`${base} ${styles}`}>
-      {children}
-    </a>
-  );
-}
+function Button({ children, href, variant = "primary" }) { const base = "inline-flex items-center justify-center gap-3 rounded-md px-6 py-4 text-xs font-bold uppercase tracking-[0.18em] transition-all duration-300";
 
-function Card({ children, className = "" }) {
-  return (
-    <div className={`rounded-[2rem] border border-white/10 bg-white/[0.045] p-6 shadow-2xl shadow-black/30 backdrop-blur-xl ${className}`}>
-      {children}
+const styles = variant === "primary" ? "bg-[#C99A2E] text-white hover:bg-[#D8B04A] shadow-[0_18px_50px_rgba(201,154,46,0.22)]" : "border border-black/70 bg-transparent text-black hover:bg-black hover:text-white";
+
+return ( <a href={href} target="_blank" rel="noreferrer" className={${base} ${styles}}> {children} </a> ); }
+
+function Feature({ icon: Icon, title, text }) { return ( <div className="flex gap-5 border-black/10 px-6 py-6 md:border-r last:border-r-0"> <div className="mt-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-black/30 text-black"> <Icon size={23} strokeWidth={1.7} /> </div> <div> <h3 className="text-sm font-bold uppercase tracking-[0.18em] text-black">{title}</h3> <p className="mt-2 max-w-xs text-[15px] leading-7 text-black/65">{text}</p> </div> </div> ); }
+
+export default function App() { return ( <main className="min-h-screen bg-[#f5f3ef] text-black"> <div className="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(0,0,0,0.04),transparent_35%)]" />
+
+{/* HEADER */}
+  <header className="sticky top-0 z-50 border-b border-white/10 bg-black text-white">
+    <div className="mx-auto flex max-w-[1500px] items-center justify-between px-5 py-4 md:px-10">
+      <a href="#top" className="flex items-center gap-4">
+        <img src="/logo-blanc-ecriture.png" alt="Ruben PELAGE" className="h-14 w-auto" />
+        <div className="hidden leading-tight sm:block">
+          <p className="font-serif text-2xl tracking-tight">Ruben PELAGE</p>
+          <p className="mt-1 text-[10px] uppercase tracking-[0.28em] text-white/55">
+            Création & protection de patrimoine
+          </p>
+        </div>
+      </a>
+
+      <nav className="hidden items-center gap-9 text-xs font-semibold uppercase tracking-[0.22em] text-white/80 lg:flex">
+        <a href="#methode" className="transition hover:text-[#D4AF37]">Méthode</a>
+        <a href="#audit" className="transition hover:text-[#D4AF37]">Audit offert</a>
+        <a href="#contact" className="transition hover:text-[#D4AF37]">Contact</a>
+      </nav>
+
+      <a
+        href={calendly}
+        target="_blank"
+        rel="noreferrer"
+        className="hidden rounded-md border border-[#C99A2E] px-5 py-3 text-xs font-bold uppercase tracking-[0.18em] text-[#D4AF37] transition hover:bg-[#C99A2E] hover:text-black md:inline-flex"
+      >
+        Réserver un audit
+      </a>
     </div>
-  );
-}
+  </header>
 
-function Label({ children }) {
-  return (
-    <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/25 bg-[#D4AF37]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-[#D4AF37]">
-      <Sparkles size={14} />
-      {children}
-    </div>
-  );
-}
-
-export default function App() {
-  return (
-    <main className="min-h-screen overflow-hidden bg-[#070707] text-white selection:bg-[#D4AF37] selection:text-black">
-      <div className="fixed inset-0 -z-10">
-        <div className="absolute left-1/2 top-[-220px] h-[620px] w-[620px] -translate-x-1/2 rounded-full bg-[#D4AF37]/15 blur-[130px]" />
-        <div className="absolute right-[-180px] top-[320px] h-[520px] w-[520px] rounded-full bg-[#008080]/20 blur-[130px]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.06),transparent_35%)]" />
+  {/* HERO */}
+  <section id="top" className="relative overflow-hidden border-b border-black/10 bg-[#f7f5f0]">
+    <div className="mx-auto grid min-h-[780px] max-w-[1500px] items-center gap-8 px-5 pt-10 md:grid-cols-[0.95fr_1.05fr] md:px-10">
+      {/* IMAGE */}
+      <div className="relative order-2 h-[520px] md:order-1 md:h-[680px]">
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#f7f5f0] to-transparent z-10" />
+        <img
+          src="/portrait-ruben.png"
+          alt="Ruben PELAGE"
+          className="absolute bottom-0 left-1/2 h-full max-h-[720px] w-auto -translate-x-1/2 object-contain grayscale"
+        />
       </div>
 
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-[#070707]/75 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
-          <a href="#top" className="flex items-center gap-3">
-            <img src="/logo-blanc-ecriture.png" alt="Ruben PELAGE" className="h-12 w-auto" />
-          
-            <div className="flex flex-col leading-tight">
-              <span className="text-lg font-semibold tracking-wide text-white">
-                Ruben PELAGE
-              </span>
-              <span className="text-xs text-white/50">
-                Création & protection de patrimoine
-              </span>
-            </div>
-          </a>
-
-          <nav className="hidden items-center gap-8 text-sm text-white/65 md:flex">
-            <a href="#methode" className="transition hover:text-white">Méthode</a>
-            <a href="#audit" className="transition hover:text-white">Audit</a>
-            <a href="#contact" className="transition hover:text-white">Contact</a>
-          </nav>
-
-          <div className="hidden md:block">
-            <Button href={calendly}>Réserver mon audit</Button>
-          </div>
+      {/* CONTENT */}
+      <div className="order-1 py-10 md:order-2 md:py-0">
+        <div className="mb-8 inline-flex border border-black px-5 py-3 text-xs font-bold uppercase tracking-[0.22em]">
+          Consultant. Stratège. Entrepreneur.
         </div>
-      </header>
 
-      <section id="top" className="mx-auto grid max-w-7xl items-center gap-12 px-5 pb-20 pt-14 md:grid-cols-[1.08fr_0.92fr] md:px-8 md:pb-28 md:pt-24">
-        <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.75 }}>
-          <h1 className="max-w-5xl text-5xl font-semibold leading-[0.93] tracking-[-0.065em] md:text-7xl lg:text-8xl">
-            Ton argent doit avoir une stratégie.
-            <span className="block bg-gradient-to-r from-[#D4AF37] via-[#f4dc91] to-white bg-clip-text text-transparent">
-              Pas seulement un compte bancaire.
-            </span>
-          </h1>
+        <div className="mb-7 h-px w-full max-w-2xl bg-black/35">
+          <div className="h-px w-16 bg-[#C99A2E]" />
+        </div>
 
-          <p className="mt-7 max-w-2xl text-lg leading-8 text-white/65 md:text-xl">
-            J’accompagne les actifs, familles et entrepreneurs à structurer leur argent, protéger leur foyer et construire une trajectoire patrimoniale claire grâce à la méthode Table / Frigo / Congélo.
+        <h1 className="font-serif text-6xl leading-[0.9] tracking-[-0.055em] md:text-7xl lg:text-8xl">
+          Stratégie.
+          <br />
+          Patrimoine.
+          <br />
+          <span className="text-[#C99A2E]">Décisions.</span>
+        </h1>
+
+        <div className="mt-8 max-w-2xl border-l-2 border-[#C99A2E] pl-6">
+          <p className="text-lg leading-9 text-black/70 md:text-xl">
+            Je t’aide à structurer ton argent, clarifier tes décisions et construire une trajectoire financière solide.
           </p>
+          <p className="mt-5 text-lg font-medium text-black">
+            Sans complexité. Sans discours inutile.
+          </p>
+        </div>
 
+        <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+          <Button href={calendly}>
+            <CalendarDays size={17} /> Réserver un audit
+          </Button>
+          <Button href={whatsapp} variant="secondary">
+            <MessageCircle size={17} /> Discuter sur WhatsApp
+          </Button>
+        </div>
+      </div>
+    </div>
+
+    {/* FEATURE STRIP */}
+    <div id="methode" className="mx-auto max-w-[1180px] translate-y-1/2 px-5 md:px-0">
+      <div className="grid overflow-hidden rounded-sm border border-black/10 bg-white/80 shadow-[0_30px_100px_rgba(0,0,0,0.08)] backdrop-blur-xl md:grid-cols-3">
+        <Feature icon={Target} title="Clarté" text="Comprendre ta situation et tes priorités." />
+        <Feature icon={ShieldCheck} title="Sécurité" text="Protéger ce qui compte vraiment pour toi." />
+        <Feature icon={TrendingUp} title="Croissance" text="Développer ton patrimoine avec stratégie." />
+      </div>
+    </div>
+  </section>
+
+  {/* TEXT SECTION */}
+  <section className="mx-auto max-w-5xl px-6 pb-20 pt-36 text-center md:pt-44">
+    <p className="mx-auto max-w-3xl font-serif text-3xl leading-tight tracking-[-0.03em] text-black md:text-5xl">
+      Une bonne stratégie financière ne commence pas par un produit. Elle commence par une vision claire.
+    </p>
+    <p className="mx-auto mt-8 max-w-2xl text-lg leading-8 text-black/60">
+      La méthode Table / Frigo / Congélo permet de remettre chaque euro à sa place : gérer le quotidien, sécuriser les projets et construire le long terme.
+    </p>
+  </section>
+
+  {/* AUDIT */}
+  <section id="audit" className="bg-black px-5 py-24 text-white md:px-10">
+    <div className="mx-auto grid max-w-[1200px] items-center gap-12 md:grid-cols-[1.1fr_0.9fr]">
+      <div>
+        <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#D4AF37]">Audit offert</p>
+        <h2 className="mt-5 font-serif text-5xl leading-tight tracking-[-0.04em] md:text-7xl">
+          Fais le point sur ton argent en 30 minutes.
+        </h2>
+        <p className="mt-7 max-w-2xl text-lg leading-8 text-white/60">
+          Un échange simple pour comprendre ta situation, repérer les axes d’amélioration et identifier les premières décisions à prendre.
+        </p>
+      </div>
+
+      <div className="rounded-sm border border-white/15 bg-white/[0.04] p-8">
+        {[
+          "Analyse rapide de ta situation",
+          "Lecture de tes priorités financières",
+          "Repérage des leviers d’optimisation",
+          "Premières pistes d’action concrètes",
+        ].map((item) => (
+          <div key={item} className="flex gap-4 border-b border-white/10 py-4 last:border-b-0">
+            <ShieldCheck className="mt-1 shrink-0 text-[#D4AF37]" size={20} />
+            <p className="text-white/75">{item}</p>
+          </div>
+        ))}
+
+        <div className="mt-8 flex flex-col gap-4">
+          <a
+            href={calendly}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center justify-center gap-3 rounded-md bg-[#C99A2E] px-6 py-4 text-xs font-bold uppercase tracking-[0.18em] text-white transition hover:bg-[#D8B04A]"
+          >
+            Réserver mon audit <ArrowRight size={17} />
+          </a>
+          <a
+            href={whatsapp}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center justify-center gap-3 rounded-md border border-white/20 px-6 py-4 text-xs font-bold uppercase tracking-[0.18em] text-white transition hover:bg-white hover:text-black"
+          >
+            WhatsApp <MessageCircle size={17} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* FOOTER */}
+  <footer id="contact" className="bg-[#090909] px-5 py-10 text-white md:px-10">
+    <div className="mx-auto flex max-w-[1200px] flex-col items-center justify-between gap-8 border-t border-white/10 pt-10 md:flex-row">
+      <div className="text-center text-sm text-white/45 md:text-left">
+        <p className="text-white/70">© 2026 Ruben PELAGE — Création & protection de patrimoine.</p>
+        <p className="mt-1">N° ORIAS : 22005046 · Martinique · France</p>
+      </div>
+
+      <div className="flex items-center gap-5">
+        <a href={instagram} target="_blank" rel="noreferrer" className="transition hover:text-[#D4AF37]" aria-label="Instagram">
+          <Instagram />
+        </a>
+        <a href={linkedin} target="_blank" rel="noreferrer" className="transition hover:text-[#D4AF37]" aria-label="LinkedIn">
+          <Linkedin />
+        </a>
+        <a href={whatsapp} target="_blank" rel="noreferrer" className="transition hover:text-[#D4AF37]" aria-label="WhatsApp">
+          <MessageCircle />
+        </a>
+      </div>
+    </div>
+  </footer>
+</main>
+
+); }
           <div className="mt-9 flex flex-col gap-4 sm:flex-row">
             <Button href={calendly}>
               Réserver un audit offert <ArrowRight size={18} />
