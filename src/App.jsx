@@ -19,7 +19,7 @@ const calendly =
 
 const instagram = "https://instagram.com/__rub3n__";
 const linkedin = "https://linkedin.com/in/rubenpelage";
-const email = "mailto:ruben.pelage@gmail.com";
+const email = "mailto:contact@pelageruben.com";
 
 function Navbar() {
   return (
@@ -351,7 +351,7 @@ function ContactPage() {
             </h3>
 
             <p className="mt-3 text-white/60">
-              ruben.pelage@gmail.com
+              contact@pelageruben.com
             </p>
           </a>
 
