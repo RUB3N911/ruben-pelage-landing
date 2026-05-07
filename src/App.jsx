@@ -15,7 +15,7 @@ import {
   Wallet,
   Snowflake,
   TrendingUp,
-  BarChart3,
+  ArrowRight,
 } from "lucide-react";
 
 const calendly = "https://calendly.com/ruben-pelage/consultation";
@@ -24,6 +24,111 @@ const whatsapp =
 const instagram = "https://instagram.com/__rub3n__";
 const linkedin = "https://www.linkedin.com/in/rubenpelage";
 const email = "mailto:ruben.pelage@gmail.com";
+
+function Footer({ setPage }) {
+  return (
+    <footer className="mt-20 border-t border-white/10 pt-8 text-center text-xs text-white/45">
+      <div className="flex justify-center gap-6 text-white/70">
+        <a href={instagram} target="_blank" rel="noreferrer"><Instagram size={24} /></a>
+        <a href={linkedin} target="_blank" rel="noreferrer"><Linkedin size={24} /></a>
+        <a href={whatsapp} target="_blank" rel="noreferrer"><MessageCircle size={24} /></a>
+        <a href={email}><Mail size={24} /></a>
+      </div>
+
+      <p className="mt-6 font-medium text-white/65">© 2026 Ruben PELAGE</p>
+      <p className="mt-1">Création & protection de patrimoine · N° ORIAS : 22005046</p>
+      <p className="mt-1">Martinique · France</p>
+
+      <div className="mt-5 flex justify-center gap-4">
+        <button onClick={() => setPage("legal")} className="underline underline-offset-4">
+          Mentions légales
+        </button>
+        <button onClick={() => setPage("privacy")} className="underline underline-offset-4">
+          Politique de confidentialité
+        </button>
+      </div>
+    </footer>
+  );
+}
+
+function MethodCard({ icon: Icon, label, title, text, color = "gold" }) {
+  const accent = color === "teal" ? "text-[#65d6d6] bg-[#008080]/20" : "text-[#D4AF37] bg-[#D4AF37]/10";
+
+  return (
+    <div className="rounded-3xl border border-white/10 bg-white/[0.045] p-6 text-left transition hover:-translate-y-1 hover:border-[#D4AF37]/30">
+      <div className={`mb-5 flex h-14 w-14 items-center justify-center rounded-2xl ${accent}`}>
+        <Icon size={28} />
+      </div>
+
+      <p className={`text-xs font-semibold uppercase tracking-[0.25em] ${color === "teal" ? "text-[#65d6d6]" : "text-[#D4AF37]"}`}>
+        {label}
+      </p>
+
+      <h3 className="mt-2 text-2xl font-bold text-white">{title}</h3>
+
+      <p className="mt-4 leading-7 text-white/55">{text}</p>
+    </div>
+  );
+}
+
+function MethodSection() {
+  return (
+    <section id="methode" className="mx-auto mt-24 max-w-7xl px-6">
+      <div className="rounded-[2.5rem] border border-white/10 bg-[#0d0d0d] p-8 shadow-[0_25px_80px_rgba(0,0,0,0.45)] md:p-12">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#D4AF37]">
+            Méthode Table / Frigo / Congélo
+          </p>
+
+          <h2 className="mt-5 text-4xl font-bold leading-tight md:text-6xl">
+            Une mission précise pour chaque euro.
+          </h2>
+
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-white/55 md:text-lg">
+            Transformer le flou financier en structure claire : maîtriser le quotidien,
+            sécuriser l’avenir proche et construire durablement.
+          </p>
+        </div>
+
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <MethodCard
+            icon={Wallet}
+            label="Présent"
+            title="La Table"
+            text="Ce qui finance le quotidien : charges, dépenses, arbitrages et stabilité."
+          />
+
+          <MethodCard
+            icon={ShieldCheck}
+            label="Protection"
+            title="Le Frigo"
+            color="teal"
+            text="Ce qui sécurise l’avenir proche : épargne disponible, imprévus et sérénité."
+          />
+
+          <MethodCard
+            icon={Snowflake}
+            label="Patrimoine"
+            title="Le Congélo"
+            text="Ce qui construit le long terme : investissement, retraite, transmission et patrimoine."
+          />
+        </div>
+
+        <div className="mx-auto mt-10 max-w-3xl rounded-3xl border border-[#D4AF37]/20 bg-[#D4AF37]/10 p-6 text-center">
+          <TrendingUp className="mx-auto text-[#D4AF37]" size={34} />
+
+          <p className="mt-4 text-xl font-semibold leading-snug md:text-2xl">
+            Un argent sans stratégie crée du stress.
+          </p>
+
+          <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-white/60 md:text-base">
+            Un argent structuré crée de la liberté, de la vision et des possibilités.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 function LinkButton({ icon: Icon, title, subtitle, href }) {
   return (
@@ -45,196 +150,110 @@ function LinkButton({ icon: Icon, title, subtitle, href }) {
   );
 }
 
-function Footer({ setPage }) {
-  return (
-    <footer className="mt-14 border-t border-white/10 pt-8 text-center text-xs text-white/45">
-      <div className="flex justify-center gap-6 text-white/70">
-        <a href={instagram} target="_blank" rel="noreferrer">
-          <Instagram size={24} />
-        </a>
-        <a href={linkedin} target="_blank" rel="noreferrer">
-          <Linkedin size={24} />
-        </a>
-        <a href={whatsapp} target="_blank" rel="noreferrer">
-          <MessageCircle size={24} />
-        </a>
-        <a href={email}>
-          <Mail size={24} />
-        </a>
-      </div>
-
-      <p className="mt-6 font-medium text-white/65">© 2026 Ruben PELAGE</p>
-      <p className="mt-1">
-        Création & protection de patrimoine · N° ORIAS : 22005046
-      </p>
-      <p className="mt-1">Martinique · France</p>
-
-      <div className="mt-5 flex justify-center gap-4">
-        <button
-          onClick={() => setPage("legal")}
-          className="underline underline-offset-4"
-        >
-          Mentions légales
-        </button>
-        <button
-          onClick={() => setPage("privacy")}
-          className="underline underline-offset-4"
-        >
-          Politique de confidentialité
-        </button>
-      </div>
-    </footer>
-  );
-}
-
-function MethodSection() {
-  return (
-    <section className="mt-14 rounded-[2.5rem] border border-white/10 bg-[#0d0d0d] px-6 py-10 text-white shadow-[0_25px_80px_rgba(0,0,0,0.4)]">
-      <div className="text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#D4AF37]">
-          Méthode Table / Frigo / Congélo
-        </p>
-
-        <h2 className="mx-auto mt-5 max-w-md text-4xl font-bold leading-tight">
-          Une mission précise pour chaque euro.
-        </h2>
-
-        <p className="mx-auto mt-5 max-w-md text-base leading-7 text-white/55">
-          Transformer le flou financier en structure claire : vivre, sécuriser
-          et construire durablement.
-        </p>
-      </div>
-
-      <div className="mt-10 space-y-5">
-        <div className="rounded-3xl border border-white/10 bg-white/[0.05] p-6">
-          <div className="flex items-start gap-5">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#D4AF37]/10 text-[#D4AF37]">
-              <Wallet size={28} />
-            </div>
-
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#D4AF37]">
-                Présent
-              </p>
-              <h3 className="mt-2 text-2xl font-bold">La Table</h3>
-              <p className="mt-3 leading-7 text-white/55">
-                Ce qui finance le quotidien : charges, dépenses, arbitrages et
-                stabilité.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="rounded-3xl border border-white/10 bg-white/[0.05] p-6">
-          <div className="flex items-start gap-5">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#008080]/20 text-[#65d6d6]">
-              <ShieldCheck size={28} />
-            </div>
-
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#65d6d6]">
-                Protection
-              </p>
-              <h3 className="mt-2 text-2xl font-bold">Le Frigo</h3>
-              <p className="mt-3 leading-7 text-white/55">
-                Ce qui sécurise l’avenir proche : épargne disponible, imprévus
-                et sérénité.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="rounded-3xl border border-white/10 bg-white/[0.05] p-6">
-          <div className="flex items-start gap-5">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#D4AF37]/10 text-[#D4AF37]">
-              <Snowflake size={28} />
-            </div>
-
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#D4AF37]">
-                Patrimoine
-              </p>
-              <h3 className="mt-2 text-2xl font-bold">Le Congélo</h3>
-              <p className="mt-3 leading-7 text-white/55">
-                Ce qui construit le long terme : investissement, retraite,
-                transmission et patrimoine.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="mt-10 rounded-3xl border border-[#D4AF37]/20 bg-[#D4AF37]/10 p-6 text-center">
-        <TrendingUp className="mx-auto text-[#D4AF37]" size={34} />
-        <p className="mt-4 text-xl font-semibold leading-snug">
-          Un argent sans stratégie crée du stress.
-        </p>
-        <p className="mx-auto mt-3 max-w-sm text-sm leading-7 text-white/55">
-          Un argent structuré crée de la liberté, de la vision et des
-          possibilités.
-        </p>
-      </div>
-    </section>
-  );
-}
-
 function HomePage({ setPage }) {
   return (
-    <main className="min-h-screen bg-[#060606] px-6 py-10 text-white">
-      <div className="mx-auto max-w-xl text-center">
-        <img
-          src="/portrait-ruben.png"
-          alt="Ruben PELAGE"
-          className="mx-auto h-40 w-40 rounded-full border border-white/10 object-cover shadow-[0_20px_60px_rgba(0,0,0,0.45)]"
-        />
+    <main className="min-h-screen bg-[#060606] text-white">
+      <header className="sticky top-0 z-50 border-b border-white/10 bg-[#060606]/85 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+          <div className="flex items-center gap-4">
+            <img src="/logo-blanc-ecriture.png" alt="Ruben PELAGE" className="h-12 w-auto" />
+            <div className="hidden sm:block">
+              <p className="font-bold">Ruben PELAGE</p>
+              <p className="text-xs text-white/45">Création & protection de patrimoine</p>
+            </div>
+          </div>
 
-        <h1 className="mt-8 text-5xl font-bold tracking-tight">
-          Ruben PELAGE
-        </h1>
+          <nav className="hidden gap-8 text-sm text-white/55 md:flex">
+            <a href="#methode" className="hover:text-white">Méthode</a>
+            <button onClick={() => setPage("more")} className="hover:text-white">Liens</button>
+            <button onClick={() => setPage("legal")} className="hover:text-white">Mentions</button>
+          </nav>
 
-        <p className="mx-auto mt-5 max-w-lg text-2xl font-medium leading-snug text-white/90">
-          J’aide les actifs, familles et entrepreneurs à transformer le flou
-          financier en décisions stratégiques.
-        </p>
-
-        <p className="mx-auto mt-4 max-w-lg text-base leading-7 text-white/50">
-          Une approche claire, exigeante et pensée pour le long terme.
-        </p>
-
-        <div className="mt-8 flex justify-center gap-8 text-white">
-          <a href={instagram} target="_blank" rel="noreferrer">
-            <Instagram size={42} />
-          </a>
-          <a href={linkedin} target="_blank" rel="noreferrer">
-            <Linkedin size={42} />
-          </a>
-          <a href={whatsapp} target="_blank" rel="noreferrer">
-            <MessageCircle size={42} />
-          </a>
-        </div>
-
-        <div className="mt-12 space-y-5">
           <a
-            href={whatsapp}
+            href={calendly}
             target="_blank"
             rel="noreferrer"
-            className="block rounded-3xl bg-[#D4AF37] px-6 py-5 text-lg font-semibold text-black shadow-[0_18px_50px_rgba(212,175,55,0.25)]"
+            className="hidden rounded-full bg-[#D4AF37] px-6 py-3 text-sm font-semibold text-black md:inline-flex"
           >
-            Contactez-moi
+            Réserver mon audit
           </a>
+        </div>
+      </header>
 
-          <button
-            onClick={() => setPage("more")}
-            className="w-full rounded-3xl border border-white/15 bg-white/[0.04] px-6 py-5 text-lg font-semibold text-white"
-          >
-            En savoir plus
-          </button>
+      <section className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 md:min-h-[720px] md:grid-cols-[1fr_0.9fr] md:py-24">
+        <div className="text-center md:text-left">
+          <img
+            src="/portrait-ruben.png"
+            alt="Ruben PELAGE"
+            className="mx-auto h-36 w-36 rounded-full border border-white/10 object-cover shadow-[0_20px_60px_rgba(0,0,0,0.45)] md:hidden"
+          />
+
+          <h1 className="mt-8 text-5xl font-bold tracking-tight md:mt-0 md:text-7xl lg:text-8xl">
+            Clarté.
+            <br />
+            Stratégie.
+            <br />
+            <span className="text-[#D4AF37]">Patrimoine.</span>
+          </h1>
+
+          <p className="mx-auto mt-7 max-w-2xl text-xl font-medium leading-8 text-white/80 md:mx-0 md:text-2xl">
+            J’aide les actifs, familles et entrepreneurs à transformer le flou
+            financier en décisions stratégiques.
+          </p>
+
+          <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-white/50 md:mx-0 md:text-lg">
+            Une approche claire, exigeante et pensée pour le long terme.
+          </p>
+
+          <div className="mt-9 flex flex-col gap-4 sm:flex-row md:justify-start">
+            <a
+              href={whatsapp}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#D4AF37] px-7 py-4 font-semibold text-black shadow-[0_18px_50px_rgba(212,175,55,0.25)]"
+            >
+              Contactez-moi <MessageCircle size={18} />
+            </a>
+
+            <button
+              onClick={() => setPage("more")}
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-7 py-4 font-semibold text-white"
+            >
+              En savoir plus <ArrowRight size={18} />
+            </button>
+          </div>
+
+          <div className="mt-9 flex justify-center gap-7 text-white md:justify-start">
+            <a href={instagram} target="_blank" rel="noreferrer"><Instagram size={34} /></a>
+            <a href={linkedin} target="_blank" rel="noreferrer"><Linkedin size={34} /></a>
+            <a href={whatsapp} target="_blank" rel="noreferrer"><MessageCircle size={34} /></a>
+          </div>
         </div>
 
-        <MethodSection />
+        <div className="hidden md:block">
+          <div className="relative mx-auto max-w-md">
+            <div className="absolute -inset-8 rounded-full bg-[#D4AF37]/10 blur-3xl" />
+            <img
+              src="/portrait-ruben.png"
+              alt="Ruben PELAGE"
+              className="relative h-[520px] w-full rounded-[3rem] border border-white/10 object-cover grayscale shadow-[0_35px_100px_rgba(0,0,0,0.55)]"
+            />
+          </div>
+        </div>
+      </section>
+
+      <MethodSection />
+
+      <section className="mx-auto max-w-7xl px-6 py-24">
+        <div className="grid gap-6 md:grid-cols-4">
+          <LinkButton icon={Phone} title="Appel découverte 30 min" subtitle="Calendly · Gratuit" href={calendly} />
+          <LinkButton icon={Euro} title="Aide déclaration d’impôt" href={whatsapp} />
+          <LinkButton icon={Rocket} title="Audit indépendant" subtitle="Gratuit" href={whatsapp} />
+          <LinkButton icon={Globe} title="Site web" href="#" />
+        </div>
 
         <Footer setPage={setPage} />
-      </div>
+      </section>
     </main>
   );
 }
@@ -243,47 +262,22 @@ function MorePage({ setPage }) {
   return (
     <main className="min-h-screen bg-[#060606] px-6 py-8 text-white">
       <div className="mx-auto max-w-xl">
-        <button
-          onClick={() => setPage("home")}
-          className="mb-6 flex items-center gap-2 text-white/60"
-        >
-          <ArrowLeft size={20} />
-          Retour
+        <button onClick={() => setPage("home")} className="mb-6 flex items-center gap-2 text-white/60">
+          <ArrowLeft size={20} /> Retour
         </button>
 
-        <img
-          src="/portrait-ruben.png"
-          alt="Ruben PELAGE"
-          className="mx-auto h-36 w-36 rounded-full border border-white/10 object-cover"
-        />
+        <img src="/portrait-ruben.png" alt="Ruben PELAGE" className="mx-auto h-36 w-36 rounded-full border border-white/10 object-cover" />
 
         <h1 className="mt-7 text-center text-4xl font-bold">Ruben PELAGE</h1>
 
         <p className="mx-auto mt-5 max-w-lg text-center text-xl font-medium leading-snug text-white/80">
-          Mes liens utiles pour prendre rendez-vous ou avancer sur ta stratégie
-          financière.
+          Mes liens utiles pour prendre rendez-vous ou avancer sur ta stratégie financière.
         </p>
 
         <div className="mt-10 space-y-5">
-          <LinkButton
-            icon={Phone}
-            title="Appel découverte 30 min - GRATUIT"
-            subtitle="Calendly · Ruben PELAGE"
-            href={calendly}
-          />
-
-          <LinkButton
-            icon={Euro}
-            title="Besoin d’aide pour votre déclaration d’impôt ?"
-            href={whatsapp}
-          />
-
-          <LinkButton
-            icon={Rocket}
-            title="Audit financier pour indépendant - GRATUIT"
-            href={whatsapp}
-          />
-
+          <LinkButton icon={Phone} title="Appel découverte 30 min - GRATUIT" subtitle="Calendly · Ruben PELAGE" href={calendly} />
+          <LinkButton icon={Euro} title="Besoin d’aide pour votre déclaration d’impôt ?" href={whatsapp} />
+          <LinkButton icon={Rocket} title="Audit financier pour indépendant - GRATUIT" href={whatsapp} />
           <LinkButton icon={Globe} title="Site web" href="#" />
         </div>
 
@@ -297,12 +291,8 @@ function LegalPage({ setPage }) {
   return (
     <main className="min-h-screen bg-[#060606] px-6 py-8 text-white">
       <div className="mx-auto max-w-2xl">
-        <button
-          onClick={() => setPage("home")}
-          className="mb-8 flex items-center gap-2 text-white/60"
-        >
-          <ArrowLeft size={20} />
-          Retour
+        <button onClick={() => setPage("home")} className="mb-8 flex items-center gap-2 text-white/60">
+          <ArrowLeft size={20} /> Retour
         </button>
 
         <div className="rounded-3xl border border-white/10 bg-white/[0.05] p-6 shadow-xl">
@@ -310,28 +300,11 @@ function LegalPage({ setPage }) {
           <h1 className="text-3xl font-bold">Mentions légales</h1>
 
           <div className="mt-8 space-y-7 text-sm leading-7 text-white/65">
-            <p>
-              <strong className="text-white">Éditeur :</strong> Ruben PELAGE —
-              Conseiller en création et protection de patrimoine.
-            </p>
-            <p>
-              <strong className="text-white">N° ORIAS :</strong> 22005046
-            </p>
-            <p>
-              <strong className="text-white">Email :</strong>{" "}
-              ruben.pelage@gmail.com
-              <br />
-              <strong className="text-white">Téléphone :</strong> +596 696 29
-              89 21
-            </p>
-            <p>
-              <strong className="text-white">Hébergement :</strong> Vercel Inc.,
-              440 N Barranca Ave #4133, Covina, CA 91723, États-Unis.
-            </p>
-            <p>
-              Les contenus du site sont protégés par le droit de la propriété
-              intellectuelle. Toute reproduction sans autorisation est interdite.
-            </p>
+            <p><strong className="text-white">Éditeur :</strong> Ruben PELAGE — Conseiller en création et protection de patrimoine.</p>
+            <p><strong className="text-white">N° ORIAS :</strong> 22005046</p>
+            <p><strong className="text-white">Email :</strong> ruben.pelage@gmail.com<br /><strong className="text-white">Téléphone :</strong> +596 696 29 89 21</p>
+            <p><strong className="text-white">Hébergement :</strong> Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis.</p>
+            <p>Les contenus du site sont protégés par le droit de la propriété intellectuelle. Toute reproduction sans autorisation est interdite.</p>
           </div>
         </div>
 
@@ -345,12 +318,8 @@ function PrivacyPage({ setPage }) {
   return (
     <main className="min-h-screen bg-[#060606] px-6 py-8 text-white">
       <div className="mx-auto max-w-2xl">
-        <button
-          onClick={() => setPage("home")}
-          className="mb-8 flex items-center gap-2 text-white/60"
-        >
-          <ArrowLeft size={20} />
-          Retour
+        <button onClick={() => setPage("home")} className="mb-8 flex items-center gap-2 text-white/60">
+          <ArrowLeft size={20} /> Retour
         </button>
 
         <div className="rounded-3xl border border-white/10 bg-white/[0.05] p-6 shadow-xl">
@@ -358,25 +327,10 @@ function PrivacyPage({ setPage }) {
           <h1 className="text-3xl font-bold">Politique de confidentialité</h1>
 
           <div className="mt-8 space-y-7 text-sm leading-7 text-white/65">
-            <p>
-              Les données pouvant être collectées incluent : nom, prénom,
-              adresse e-mail, numéro de téléphone et informations communiquées
-              volontairement.
-            </p>
-            <p>
-              Elles sont utilisées uniquement pour répondre aux demandes de
-              contact, organiser les rendez-vous et assurer le suivi des
-              échanges.
-            </p>
-            <p>
-              Aucune donnée personnelle n’est vendue ou transmise à des tiers à
-              des fins commerciales.
-            </p>
-            <p>
-              Conformément au RGPD, vous pouvez demander l’accès, la
-              rectification ou la suppression de vos données à :
-              ruben.pelage@gmail.com.
-            </p>
+            <p>Les données pouvant être collectées incluent : nom, prénom, adresse e-mail, numéro de téléphone et informations communiquées volontairement.</p>
+            <p>Elles sont utilisées uniquement pour répondre aux demandes de contact, organiser les rendez-vous et assurer le suivi des échanges.</p>
+            <p>Aucune donnée personnelle n’est vendue ou transmise à des tiers à des fins commerciales.</p>
+            <p>Conformément au RGPD, vous pouvez demander l’accès, la rectification ou la suppression de vos données à : ruben.pelage@gmail.com.</p>
           </div>
         </div>
 
